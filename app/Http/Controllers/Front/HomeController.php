@@ -1,0 +1,109 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use App\Http\Controllers\Controller;
+use App\Mail\ContactMessageReceived;
+use App\Models\AboutOurClient;
+use App\Models\AboutUs;
+use App\Models\AboutUsStats;
+use App\Models\Banner;
+use App\Models\ContactUs;
+use App\Models\FAQ;
+use App\Models\Home;
+use App\Models\HomeFeatured;
+use App\Models\Product;
+use App\Models\Service;
+use App\Models\Testimonial;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+class HomeController extends Controller
+{
+    // homepage
+    public function index()
+    {
+        $content = Home::first();
+        $testimonials = Testimonial::where('status', 1)->get();
+        $services = Service::where('status', 1)->get();
+        $faqs = FAQ::where('status', 1)->get();
+        $about = AboutUs::first();
+        // dd($aboutUs);
+         return view('frontend.index', compact('content','testimonials','services','faqs','about'));
+    }
+
+    // about us
+    public function aboutUs()
+    {
+        $banner = Banner::where('page', 'about_us')->first();
+        $about = AboutUs::first();
+        $aboutMe = AboutUs::find(2);
+        $testimonials = Testimonial::where('status', 1)->get();
+        // dd($aboutMe);
+        return view('frontend.aboutUs', compact('banner', 'about', 'aboutMe', 'testimonials'));
+    }
+
+    // services
+    public function services()
+    {
+        $banner = Banner::where('page', 'service')->first();
+        $services = Service::where('status', 1)->get();
+        $testimonials = Testimonial::where('status', 1)->get();
+        return view('frontend.services', compact('banner', 'services', 'testimonials'));
+    }
+
+    // products
+    public function products()
+    {
+        $testimonials = Testimonial::where('status', 1)->get();
+        $products = Product::with('category')->where('status', 1)->get();
+        $banner = Banner::where('page', 'product')->first();
+        // dd($products);
+        return view('frontend.products',compact('testimonials', 'products','banner'));
+    }
+
+    // faqs
+    public function faqs()
+    {
+        $banner = Banner::where('page', 'faqs')->first();
+        $faqs = FAQ::where('status', 1)->get();
+        return view('frontend.faqs', compact('banner', 'faqs'));
+    }
+
+    // contact us
+    public function contactUs()
+    {
+        $banner = Banner::where('page', 'contact')->first();
+        $testimonials = Testimonial::where('status', 1)->get();
+        return view('frontend.contactUs', compact('banner', 'testimonials'));
+    }
+
+    // store contact us
+    public function store(Request $request)
+    {
+       $data =  $request->validate([
+            'customer_name' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'nullable|numeric',
+            'message' => 'nullable|string',
+        ]);
+
+        $contact = new ContactUs();
+        $contact->name = $request->customer_name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone_number;
+        $contact->message = $request->message;
+        $contact->status = 1;
+        $contact->save();
+
+        Mail::to('erricmartin3@gmail.com')->send(new ContactMessageReceived($data));
+        toastr()->success('Message sent successfully.!');
+        return redirect()->route('contact.us');
+    }
+
+    // book a consultation
+    public function bookAConsultation()
+    {
+        return view('frontend.book-a-consultation');
+    }
+}
