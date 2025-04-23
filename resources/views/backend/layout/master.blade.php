@@ -42,11 +42,14 @@
             background-color: #C6B19F !important;
         }
 
-        .has-active .menu-text, .has-active .menu-icon {
+        .has-active .menu-text,
+        .has-active .menu-icon,
+        .menu-item.has-active .menu-link {
             color: #fff !important;
         }
-        .menu-item{
-            padding: 5px 0px 5px 0px;
+
+        .menu-item {
+            padding: 5px 0px;
         }
     </style>
 </head>
