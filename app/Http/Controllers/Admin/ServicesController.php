@@ -13,8 +13,8 @@ class ServicesController extends Controller
     public function index()
     {
         $banners = Banner::where('page', 'service')->get();
-        $allServices = Service::where('status', 1)->get();
-        return view('backend.service.service', compact('allServices','banners'));
+        $allServices = Service::get();
+        return view('backend.service.service', compact('allServices', 'banners'));
     }
 
     public function create()
@@ -24,10 +24,10 @@ class ServicesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         $request->validate([
             'title' => 'required|string',
-            'description' => 'required|string',
+            // 'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             // 'icon' => 'nullable|string',
         ]);
@@ -55,7 +55,7 @@ class ServicesController extends Controller
 
         $newService->title = $request->title;
         // $newService->icon = $request->icon;
-        $newService->description = $request->description;
+        $newService->description = $request->description??"null";
         $newService->status = 1;
 
         $newService->save();
@@ -72,11 +72,12 @@ class ServicesController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'title' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'icon' => 'nullable|string',
+            // 'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+            // 'icon' => 'nullable|string',
         ]);
 
 
@@ -98,20 +99,16 @@ class ServicesController extends Controller
         }
 
         // Image Upload (optional)
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $fileName = time() . '_image.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path('front/assets/img/service'), $fileName);
-        //     // Optionally unlink old image
-        //     // if ($updateService->image) {
-        //     //     @unlink(public_path('front/assets/img/service/' . $updateService->image));
-        //     // }
-        //     $updateService->image = $fileName;
-        // }
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_image.' . $file->getClientOriginalExtension();
+            $file->move(public_path('front/assets/images/featured'), $fileName);
+            $updateService->image = $fileName;
+        }
 
         $updateService->title = $request->title;
-        $updateService->icon = $request->icon;
-        $updateService->description = $request->description;
+        // $updateService->icon = $request->icon;
+        $updateService->description = $request->description??"null";
         $updateService->status = $request->status;
 
         $updateService->save();

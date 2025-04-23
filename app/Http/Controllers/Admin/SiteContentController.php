@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\SiteContent;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
@@ -21,13 +22,13 @@ class SiteContentController extends Controller
         $consultation = SiteContent::select('consultation')->first();
         $footer_text = SiteContent::select('footer_text')->first();
         // dd($logo);
-        return view('backend.siteContent.index', compact('logo', 'phone', 'email', 'address', 'copyright', 'footer_logo', 'consultation','footer_text'));
+        return view('backend.siteContent.index', compact('logo', 'phone', 'email', 'address', 'copyright', 'footer_logo', 'consultation', 'footer_text'));
     }
 
     // update site content
     public function updateContent(Request $request)
     {
-        
+
         $request->validate([
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
@@ -41,9 +42,9 @@ class SiteContentController extends Controller
         if (!$siteContent) {
             $siteContent = new SiteContent();
         }
-        
+
         // dd($request->all());
-        
+
         // Handle header_logo upload
         if ($request->hasFile('logo')) {
             if ($siteContent->logo && File::exists(public_path($siteContent->logo))) {
@@ -118,6 +119,99 @@ class SiteContentController extends Controller
         toastr()->success('Social Links updated successfully!');
         return redirect()->back();
     }
+
+
+    // _________ Banners _______
+    public function banners()
+    {
+        $banners = Banner::all();
+        return view('backend.siteContent.banners', compact('banners'));
+    }
+    public function create()
+    {
+        return view('backend.siteContent.createBanner');
+    }
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'greeting' => 'required|string',
+            'site_name' => 'required|string',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'banner_description' => 'required|string',
+            // 'link_on_banner' => 'nullable|url',
+            // 'link_text' => 'nullable|string',
+        ], [
+            'site_name.required' => 'Page heading is required.',
+        ]);
+
+        // dd($request);
+        $home = new Banner();
+
+        if ($request->hasFile('banner_image')) {
+            $file = $request->file('banner_image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('front/assets/images/banners'), $fileName);
+            $home->banner = $fileName;
+        }
+
+        $home->greeting = $request->greeting;
+        $home->site_name = $request->site_name;
+        $home->banner_description = $request->banner_description;
+        $home->banner_link = $request->link_on_banner;
+        $home->link_text = $request->link_text;
+        $home->save();
+        toastr()->success('Banner created successfully!');
+        return redirect()->route('admin.banners');
+    }
+
+    public function edit($id)
+    {
+        $content = Banner::find($id);
+        // dd($home);
+        return view('backend.siteContent.editBanner', compact('content'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'greeting' => 'required|string',
+            'site_name' => 'required|string',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'banner_description' => 'required|string',
+            // 'link_on_banner' => 'nullable|url',
+            // 'link_text' => 'nullable|string',
+        ], [
+            'site_name.required' => 'Page heading is required.',
+        ]);
+
+        $home = Banner::find($id);
+
+        if ($request->hasFile('banner_image')) {
+            if ($home->banner && file_exists(public_path('front/assets/images/banners/' . $home->banner))) {
+                unlink(public_path('front/assets/images/banners/' . $home->banner));
+            }
+            $file = $request->file('banner_image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('front/assets/images/banners'), $fileName);
+            $home->banner = $fileName;
+        }
+
+        $home->greeting = $request->greeting;
+        $home->site_name = $request->site_name;
+        $home->banner_description = $request->banner_description;
+        $home->banner_link = $request->link_on_banner;
+        $home->link_text = $request->link_text;
+        $home->save();
+        toastr()->success('Banner updated successfully!');
+        return redirect()->route('admin.banners');
+    }
+
+    public function delete($id)
+    {
+        $home = Banner::find($id);
+        $home->delete();
+        toastr()->success('Banner deleted successfully!');
+        return redirect()->route('admin.banners');
+    }
 }
-
-

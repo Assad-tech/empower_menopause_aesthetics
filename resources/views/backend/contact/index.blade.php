@@ -6,12 +6,11 @@
     <!-- .page -->
     <div class="page bg-white">
         {{-- Contact Us Banner --}}
-        <!-- .page-inner -->
+        {{-- <!-- .page-inner -->
         <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <h1 class="page-title"> Manage Contact Us Banner</h1>
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -82,7 +81,7 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
+        </div><!-- /.page-inner --> --}}
         
         {{-- Contact Us --}}
         <!-- .page-inner -->

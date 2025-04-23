@@ -12,9 +12,9 @@
         <div class="row emp-header-top-row">
             <div class="col-md-5 logo-col">
                 @if ($logo)
-                    <img src="{{asset('front/assets/images/' . $logo->logo)}}" alt="">
+                    <img src="{{ asset('front/assets/images/' . $logo->logo) }}" alt="">
                 @else
-                    <img src="{{asset('front/assets/images/logo.png')}}" alt="">
+                    <img src="{{ asset('front/assets/images/logo.png') }}" alt="">
                 @endif
             </div>
             <div class="col-md-7">
@@ -30,7 +30,6 @@
                                     <a href="tel:{{ str_replace(' ', '', $phone->phone) }}">{{ $phone->phone }}</a>
 
                                 </p>
-
                             @else
                                 <p class="text-light"> <a href="tel:0466824777">0466 824 777</a> </p>
                             @endif
@@ -97,9 +96,11 @@
                 </div>
                 <div class="col-md-3 search-col">
                     <div class="search-container">
-                        <form class="banner-search" action="">
+                        <form class="banner-search" action="{{ route('products') }}" method="GET">
+                            @csrf
                             <button type="submit"><i class="fa fa-search"></i></button>
-                            <input type="text" placeholder="Search something here!" name="search">
+                            <input type="text" placeholder="Search something here!" name="search"
+                                value="{{ request('search') }}">
                         </form>
                     </div>
 
@@ -127,8 +128,7 @@
                         </a>
                     @endif
                     @if ($linkedin)
-                        <a
-                            href="{{ $linkedin->linkedin }}">
+                        <a href="{{ $linkedin->linkedin }}">
                             <div><span><i class="fa-brands fa-linkedin"></i></span> </div>
                         </a>
                     @else
@@ -136,7 +136,6 @@
                             href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEwjzG5ponOQwAAAZY2FgFwbWjDk8D17dgjtfANjw9lawtWztVfeCmc3zwWzk-88OOUg0z9or8ahNOCDVjiT-5bnr2iyh6JuOInP-qSI7Uk1F4_ndBDB-wwtx5wgsI0QJkGCKg=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F106848055%2Fadmin%2Fdashboard%2F">
                             <div><span><i class="fa-brands fa-linkedin"></i></span> </div>
                         </a>
-
                     @endif
                 </div>
             </div>

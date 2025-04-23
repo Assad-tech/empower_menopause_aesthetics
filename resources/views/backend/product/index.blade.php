@@ -7,12 +7,11 @@
     <!-- .page -->
     <div class="page bg-white">
         {{-- Products Banner --}}
-        <!-- .page-inner -->
+        {{-- <!-- .page-inner -->
         <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <h1 class="page-title"> Manage Products Banner</h1>
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -42,7 +41,6 @@
                             <tbody>
                                 @foreach ($banners as $data)
                                     <tr>
-                                        {{-- @dd($data->banner) --}}
                                         <td> {{ $i++ }} </td>
                                         <td>
                                             <img class="img rounded" width="100"
@@ -84,7 +82,7 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
+        </div><!-- /.page-inner --> --}}
 
         {{-- Products --}}
         <!-- .page-inner -->
@@ -129,7 +127,7 @@
                                         <td>
                                             @if ($product->image)
                                                 <img src="{{ asset('front/assets/images/products/' . $product->image) }}"
-                                                    alt="{{ $product->name }}" class="rounded img-fluid" width="80"
+                                                    alt="{{ $product->name }}" class="rounded" width="80"
                                                     height="60">
                                             @else
                                                 <span class="text-muted">No Image</span>
@@ -170,7 +168,7 @@
     <script>
         $(document).ready(function() {
             $('#dt-responsive').DataTable({
-                responsive: true,
+                responsive: false,
                 autoWidth: false,
                 dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                     "<'table-responsive'tr>" +

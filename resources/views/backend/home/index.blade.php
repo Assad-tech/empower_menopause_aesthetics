@@ -25,43 +25,43 @@
                 <div class="section-block">
                     <!-- metric row -->
                     <div class="metric-row">
-                        <div class="col-lg-12">
-                            <div class="metric-row metric-flush">
-                                <!-- metric column -->
-                                <div class="col">
-                                    <!-- .metric -->
-                                    <a href="user-teams.html" class="metric metric-bordered align-items-center">
-                                        <h2 class="metric-label"> Messages </h2>
-                                        <p class="metric-value h3">
-                                            <sub><i class="oi oi-people"></i></sub> <span
-                                                class="value">{{ $allContactUs ?? '0' }}</span>
-                                        </p>
-                                    </a> <!-- /.metric -->
-                                </div><!-- /metric column -->
-                                <!-- metric column -->
-                                <div class="col">
-                                    <!-- .metric -->
-                                    <a href="user-projects.html" class="metric metric-bordered align-items-center">
-                                        <h2 class="metric-label"> Services</h2>
-                                        <p class="metric-value h3">
-                                            <sub><i class="oi oi-fork"></i></sub> <span
-                                                class="value">{{ $allServices ?? '0' }}</span>
-                                        </p>
-                                    </a> <!-- /.metric -->
-                                </div><!-- /metric column -->
-                                <!-- metric column -->
-                                <div class="col">
-                                    <!-- .metric -->
-                                    <a href="user-tasks.html" class="metric metric-bordered align-items-center">
-                                        <h2 class="metric-label"> FAQs</h2>
-                                        <p class="metric-value h3">
-                                            <sub><i class="fa fa-tasks"></i></sub> <span
-                                                class="value">{{ $allFAQs ?? '0' }}</span>
-                                        </p>
-                                    </a> <!-- /.metric -->
-                                </div><!-- /metric column -->
+                        <div class="col-sm-3">
+                            <div class="metric metric-bordered align-items-center bg-white">
+                                <h2 class="metric-label"> Messages </h2>
+                                <p class="metric-value h3">
+                                    <sub><i class="oi oi-people"></i></sub> <span
+                                        class="value">{{ $allContactUs ?? '0' }}</span>
+                                </p>
                             </div>
-                        </div><!-- metric column -->
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="metric metric-bordered align-items-center bg-white">
+                                <h2 class="metric-label"> Services</h2>
+                                <p class="metric-value h3">
+                                    <sub><i class="oi oi-fork"></i></sub> <span
+                                        class="value">{{ $allServices ?? '0' }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="metric metric-bordered align-items-center bg-white">
+                                <h2 class="metric-label"> Products</h2>
+                                <p class="metric-value h3">
+                                    <sub>
+                                        <i class="oi oi-timer"></i>
+                                    </sub> <span
+                                        class="value">{{ $allProducts ?? '0' }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="metric metric-bordered align-items-center bg-white">
+                                <h2 class="metric-label"> FAQs</h2>
+                                <p class="metric-value h3">
+                                    <sub><i class="fa fa-tasks"></i></sub> <span class="value">{{ $allFAQs ?? '0' }}</span>
+                                </p>
+                            </div>
+                        </div>
                     </div><!-- /metric row -->
                 </div><!-- /.section-block -->
             </div><!-- /.page-section -->

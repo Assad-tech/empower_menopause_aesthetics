@@ -41,7 +41,7 @@
                             @csrf
                             {{-- Social Links and Site Logo --}}
                             <div class="row pb-3">
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <h4>Facebook</h4>
                                         <input type="url" class="form-control @error('facebook') is-invalid @enderror"
@@ -52,7 +52,10 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                            </div>
+
+                            <div class="row pb-3">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <h4>Instagram</h4>
                                         <input type="url" class="form-control @error('instagram') is-invalid @enderror"
@@ -66,7 +69,7 @@
                             </div>
 
                             <div class="row pb-3">
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <h4>LinkedIn</h4>
                                         <input type="url" class="form-control @error('linkedin') is-invalid @enderror"

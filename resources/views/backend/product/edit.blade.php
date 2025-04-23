@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Update category')
+@section('title', 'Update Product')
 @push('custom_css')
 @endpush
 @section('content')
@@ -11,7 +11,7 @@
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <div class="d-flex justify-content-between">
-                    <h1 class="page-title"> Update category </h1>
+                    <h1 class="page-title"> Update Product </h1>
                     <div class="btn-toolbar">
                         {{-- <button type="button" class="btn btn-primary">Add team</button> --}}
                     </div>
@@ -27,100 +27,104 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                {{-- Product Name --}}
                                 <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <h4>Product Name</h4>
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Enter Product Name" value="{{ old('name', $product->name) }}">
-                                        @error('name')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                    {{-- Product Name --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Product Name</h4>
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Enter Product Name" value="{{ old('name', $product->name) }}">
+                                            @error('name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{-- Description with Summernote --}}
+                                    {{-- <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Description</h4>
+                                            <div id="summernote-description" data-toggle="summernote"
+                                                data-placeholder="Enter Product Description" data-height="150"></div>
+                                            <input type="hidden" name="description" id="description">
+                                            @error('description')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div> --}}
+                                    {{-- Image --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Image</h4>
+                                            <input type="file" name="image" class="form-control dropify"
+                                                data-default-file="{{ $product->image ? asset('front/assets/images/products/' . $product->image) : '' }}">
+                                            @error('image')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-
-                                {{-- Category --}}
                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <h4>Category</h4>
-                                        <select name="category_id" class="form-control">
-                                            <option value="">Select Category</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                                                    {{ $category->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                    {{-- Category --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Category</h4>
+                                            <select name="category_id" class="form-control">
+                                                <option value="">Select Category</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    {{-- Price --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Price</h4>
+                                            <input type="number" step="0.01" name="price" class="form-control"
+                                                placeholder="Enter Price" value="{{ old('price', $product->price) }}">
+                                            @error('price')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    {{-- Stock --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Stock</h4>
+                                            <input type="number" name="stock" class="form-control"
+                                                placeholder="Enter Stock Quantity"
+                                                value="{{ old('stock', $product->stock) }}">
+                                            @error('stock')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    {{-- Discount Percentage --}}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Discount in Percentage (%)</h4>
+                                            <input type="number" name="discount_percentage" class="form-control"
+                                                placeholder="Enter Discount in Percentage"
+                                                value="{{ old('discount_percentage', $product->discount_percentage) }}">
+                                            @error('discount_percentage')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
-                                {{-- Description with Summernote --}}
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <h4>Description</h4>
-                                        <div id="summernote-description" data-toggle="summernote"
-                                            data-placeholder="Enter Product Description" data-height="150"></div>
-                                        <input type="hidden" name="description" id="description">
-                                        @error('description')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
 
-                                {{-- Price --}}
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <h4>Price</h4>
-                                        <input type="number" step="0.01" name="price" class="form-control"
-                                            placeholder="Enter Price" value="{{ old('price', $product->price) }}">
-                                        @error('price')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                {{-- Image --}}
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <h4>Image</h4>
-                                        <input type="file" name="image" class="form-control dropify"
-                                            data-default-file="{{ $product->image ? asset('front/assets/images/products/' . $product->image) : '' }}">
-                                        @error('image')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                {{-- Stock --}}
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <h4>Stock</h4>
-                                        <input type="number" name="stock" class="form-control"
-                                            placeholder="Enter Stock Quantity" value="{{ old('stock', $product->stock) }}">
-                                        @error('stock')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                {{-- Discount Percentage --}}
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <h4>Discount in Percentage (%)</h4>
-                                        <input type="number" name="discount_percentage" class="form-control"
-                                            placeholder="Enter Discount in Percentage"
-                                            value="{{ old('discount_percentage', $product->discount_percentage) }}">
-                                        @error('discount_percentage')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                                 {{-- Special Offer Text --}}
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <h4>Special Offer Text</h4>
                                         <input type="text" name="offer_text" class="form-control"

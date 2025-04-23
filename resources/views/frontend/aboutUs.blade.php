@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-left">
                     <div class="about-content">
-                        {!! $about->heading ?? 'About Us' !!}
+                        <h3 class="sub-h">{{$about->heading??"About Us"}}</h3>
                         {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                         <button>for more details</button>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-right">
                     <div class="about-content">
-                        {!! $aboutMe->heading ?? 'About Me' !!}
+                        <h3 class="sub-h">{{$aboutMe->heading??"About Me"}}</h3>
                         {!! $aboutMe->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                     </div>

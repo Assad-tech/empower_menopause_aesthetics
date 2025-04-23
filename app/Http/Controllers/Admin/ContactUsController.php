@@ -120,3 +120,5 @@ class ContactUsController extends Controller
         return redirect()->route('admin.manage.contact-us');
     }
 }
+
+

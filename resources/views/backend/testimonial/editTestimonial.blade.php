@@ -70,10 +70,11 @@
                                     {{-- Feedback --}}
                                     <div class="form-group">
                                         <h4>Feedback</h4>
-                                        <div id="summernote-feedback" data-toggle="summernote" data-height="150">
+                                        {{-- <div id="summernote-feedback" data-toggle="summernote" data-height="150">
                                             {!! old('feedback', $testimonial->feedback) !!}
                                         </div>
-                                        <input type="hidden" name="feedback" id="feedback">
+                                        <input type="hidden" name="feedback" id="feedback"> --}}
+                                        <textarea name="feedback" class="form-control" placeholder="Enter Feedback" id="">{{$testimonial->feedback}}</textarea>
                                         @error('feedback')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

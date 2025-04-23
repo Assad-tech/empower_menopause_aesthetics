@@ -12,6 +12,7 @@ use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\Home;
 use App\Models\HomeFeatured;
+use App\Models\NewsLatterEmail;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Testimonial;
@@ -29,7 +30,7 @@ class HomeController extends Controller
         $faqs = FAQ::where('status', 1)->get();
         $about = AboutUs::first();
         // dd($aboutUs);
-         return view('frontend.index', compact('content','testimonials','services','faqs','about'));
+        return view('frontend.index', compact('content', 'testimonials', 'services', 'faqs', 'about'));
     }
 
     // about us
@@ -53,13 +54,29 @@ class HomeController extends Controller
     }
 
     // products
-    public function products()
+    public function products(Request $request)
     {
         $testimonials = Testimonial::where('status', 1)->get();
-        $products = Product::with('category')->where('status', 1)->get();
         $banner = Banner::where('page', 'product')->first();
+        $productsQuery = Product::with('category')->where('status', 1);
+
+        // If search term exists, filter the products
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
+
+            $productsQuery->where(function ($query) use ($searchTerm) {
+                $query->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('offer_text', 'like', '%' . $searchTerm . '%');
+            })
+                ->orWhereHas('category', function ($q) use ($searchTerm) {
+                    $q->where('name', 'like', '%' . $searchTerm . '%');
+                });
+        }
+
+        $products = $productsQuery->get();
         // dd($products);
-        return view('frontend.products',compact('testimonials', 'products','banner'));
+        return view('frontend.products', compact('testimonials', 'products', 'banner'));
     }
 
     // faqs
@@ -81,7 +98,7 @@ class HomeController extends Controller
     // store contact us
     public function store(Request $request)
     {
-       $data =  $request->validate([
+        $data =  $request->validate([
             'customer_name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'nullable|numeric',
@@ -105,5 +122,21 @@ class HomeController extends Controller
     public function bookAConsultation()
     {
         return view('frontend.book-a-consultation');
+    }
+
+    // store emails
+    public function storeEmails(Request $request)
+    {
+        $request->validate([
+            'email' => 'nullable|email|unique:news_latter_emails,email',
+        ]);
+
+        $email = new NewsLatterEmail();
+        $email->email = $request->email;
+        $email->subscribtion_status = 1;
+        $email->subscribed_at = now();
+        $email->save();
+        toastr()->success('Email saved successfully.!');
+        return redirect()->route('home');
     }
 }

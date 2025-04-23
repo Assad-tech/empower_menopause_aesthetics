@@ -61,10 +61,18 @@
                     </li>
 
                     <!-- .menu-item -->
+                    <li class="menu-item {{ Route::is('admin.banners') ? 'has-active' : '' }}">
+                        <a href="{{ route('admin.banners') }}" class="menu-link">
+                            <span class="menu-icon far fa-file"></span>
+                            <span class="menu-text">Banners</span>
+                        </a>
+                    </li>
+
+                    <!-- .menu-item -->
                     <li class="menu-item {{ Route::is('admin.manage.home') ? 'has-active' : '' }}">
                         <a href="{{ route('admin.manage.home') }}" class="menu-link">
                             <span class="menu-icon far fa-file"></span>
-                            <span class="menu-text">Home</span>
+                            <span class="menu-text">Testimonials</span>
                         </a>
                     </li>
 

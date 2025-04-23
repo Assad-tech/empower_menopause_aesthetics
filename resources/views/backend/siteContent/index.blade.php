@@ -24,31 +24,46 @@
                     <div class="card-body">
                         <form action="{{ route('admin.site-content.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- Copyright and Address --}}
-                            <div class="row ob-3">
+                            {{-- logos --}}
+                            <div class="row">
                                 <div class="col-sm-6">
+                                    <h4>Header logo</h4>
                                     <div class="form-group">
-                                        <h4>Address</h4>
-                                        <textarea name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Enter Address">{{ $address->address }}</textarea>
-                                        @error('address')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="file"
+                                            class="form-control dropify @error('logo') is-invalid @enderror" name="logo"
+                                            value="{{ $logo->logo }}" id=""
+                                            data-default-file="{{ asset('front/assets/images/' . $logo->logo) }}">
                                     </div>
+                                    @error('logo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-6">
+                                    <h4>Footer logo</h4>
                                     <div class="form-group">
-                                        <h4>Copyright</h4>
-                                        <input type="text" placeholder="Enter Copyright"
-                                            class="form-control @error('copyright') is-invalid @enderror" name="copyright"
-                                            value="{{ $copyright->copyright }}">
-                                        @error('copyright')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="file"
+                                            class="form-control dropify @error('footer_logo') is-invalid @enderror"
+                                            name="footer_logo" value="{{ $footer_logo->footer_logo }}" id=""
+                                            data-default-file="{{ asset('front/assets/images/' . $footer_logo->footer_logo) }}">
                                     </div>
+                                    @error('footer_logo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-                            {{-- Phone and Logo --}}
+                            {{-- Phone and Email --}}
                             <div class="row pb-3">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Email</h4>
+                                        <input type="email" placeholder="Enter Email"
+                                            class="form-control @error('email') is-invalid @enderror" name="email"
+                                            value="{{ $email->email }}">
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <h4>Phone</h4>
@@ -62,11 +77,9 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <h4>Email</h4>
-                                        <input type="email" placeholder="Enter Email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ $email->email }}">
-                                        @error('email')
+                                        <h4>Address</h4>
+                                        <textarea name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Enter Address">{{ $address->address }}</textarea>
+                                        @error('address')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -93,31 +106,16 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-6">
-                                    <h4>Header logo</h4>
                                     <div class="form-group">
-                                        <input type="file"
-                                            class="form-control dropify @error('logo') is-invalid @enderror" name="logo"
-                                            value="{{ $logo->logo }}" id=""
-                                            data-default-file="{{ asset('front/assets/images/' . $logo->logo) }}">
+                                        <h4>Copyright</h4>
+                                        <input type="text" placeholder="Enter Copyright"
+                                            class="form-control @error('copyright') is-invalid @enderror" name="copyright"
+                                            value="{{ $copyright->copyright }}">
+                                        @error('copyright')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    @error('logo')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4>Footer logo</h4>
-                                    <div class="form-group">
-                                        <input type="file"
-                                            class="form-control dropify @error('footer_logo') is-invalid @enderror"
-                                            name="footer_logo" value="{{ $footer_logo->footer_logo }}" id=""
-                                            data-default-file="{{ asset('front/assets/images/' . $footer_logo->footer_logo) }}">
-                                    </div>
-                                    @error('footer_logo')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>

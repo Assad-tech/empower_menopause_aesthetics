@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\Home;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class DashboardController extends Controller
         $allServices = Service::where('status', 1)->get()->count();
         $allFAQs = FAQ::where('status', 1)->get()->count();
         $allContactUs = ContactUs::where('status', 1)->get()->count();
-        return view('backend.home.index', compact('allServices', 'allFAQs', 'allContactUs'));
+        $allProducts = Product::where('status', 1)->get()->count();
+        // dd($allProducts);
+        return view('backend.home.index', compact('allServices', 'allFAQs', 'allContactUs', 'allProducts'));
     }
 
     public function viewHome()
@@ -121,6 +124,7 @@ class DashboardController extends Controller
 
     public function storeTestimonial(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
@@ -211,3 +215,4 @@ class DashboardController extends Controller
         return redirect()->back();
     }
 }
+

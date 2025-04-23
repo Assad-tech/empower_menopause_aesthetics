@@ -68,10 +68,11 @@
                                     {{-- Feedback --}}
                                     <div class="form-group">
                                         <h4>Feedback</h4>
-                                        <div id="summernote-feedback" data-toggle="summernote"
+                                        {{-- <div id="summernote-feedback" data-toggle="summernote"
                                             data-placeholder="Enter Feedback" data-height="150">
-                                        </div>
-                                        <input type="hidden" name="feedback" id="feedback">
+                                        </div> --}}
+                                        {{-- <input type="hidden" name="feedback" id="feedback"> --}}
+                                        <textarea name="feedback" id="feedback" class="form-control" placeholder="Enter Feedback"></textarea>
                                         @error('feedback')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -127,23 +128,23 @@
 
 @push('custom_js')
     <script>
-        $(document).ready(function() {
-            $(document).on('theme:init', function() {
-                new SummernoteDemo();
-            });
+        // $(document).ready(function() {
+        //     $(document).on('theme:init', function() {
+        //         new SummernoteDemo();
+        //     });
 
-            // Initialize the correct summernote ID
-            $('#summernote-feedback').summernote({
-                placeholder: 'Enter Banner Description',
-                height: 150
-            });
-            // $('#summernote-feedback').on('summernote.change', function(we, contents, $editable) {
-            //     $('#feedback').val(contents);
-            // });
-            // Sync summernote content to hidden input before form submit
-            $('form').on('submit', function() {
-                $('#feedback').val($('#summernote-feedback').summernote('code'));
-            });
-        });
+        //     // Initialize the correct summernote ID
+        //     $('#summernote-feedback').summernote({
+        //         placeholder: 'Enter Banner Description',
+        //         height: 150
+        //     });
+        //     // $('#summernote-feedback').on('summernote.change', function(we, contents, $editable) {
+        //     //     $('#feedback').val(contents);
+        //     // });
+        //     // Sync summernote content to hidden input before form submit
+        //     $('form').on('submit', function() {
+        //         $('#feedback').val($('#summernote-feedback').summernote('code'));
+        //     });
+        // });
     </script>
 @endpush

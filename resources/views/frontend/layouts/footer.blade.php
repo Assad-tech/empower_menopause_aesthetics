@@ -17,18 +17,34 @@
                     <img src="{{ asset('front/assets/images/footer-logo.webp') }}" alt="">
                 @endif
                 <p class="text-white mt-3">
-                    {!! $desc->footer_text ?? 'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
+                    {!! $desc->footer_text ??
+                        'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                 </p>
             </div>
             <div class="col-md-3">
-                <div class="footer-list  left-padding">
+                <div class="footer-list left-padding">
                     <h4 class="footer-heading">Quick Links</h4>
                     <ul>
-                        <li><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li><a class="nav-link" href="{{ route('about.us') }}">About</a></li>
-                        <li><a class="nav-link" href="{{ route('services') }}">Services</a></li>
-                        <li><a class="nav-link" href="{{ route('products') }}">Products</a></li>
-                        <li><a class="nav-link" href="{{ route('contact.us') }}">Contact Us</a></li>
+                        <li>
+                            <a class="nav-link {{ Route::is('home') ? 'footer_active' : '' }}"
+                                href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ Route::is('about.us') ? 'footer_active' : '' }}"
+                                href="{{ route('about.us') }}">About</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ Route::is('services') ? 'footer_active' : '' }}"
+                                href="{{ route('services') }}">Services</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ Route::is('products') ? 'footer_active' : '' }}"
+                                href="{{ route('products') }}">Products</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ Route::is('contact.us') ? 'footer_active' : '' }}"
+                                href="{{ route('contact.us') }}">Contact Us</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -61,16 +77,20 @@
                             @endif
                         </li>
                     </ul>
-                    <form action="" class="newsletter">
-                        <input type="text" placeholder="Enter your email">
+                    <form action="{{ route('emails.store') }}" class="newsletter" method="post">
+                        @csrf
+                        <input type="email" name="email" placeholder="Enter your email">
                         <button type="submit">Send</button>
                     </form>
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
+
             <div class="col-12 copyright">
                 <p class="text-white text-center">Copyright &copy; {{ date('Y') }}.
                     {{ $copyright->copyright ?? ' ' }}</p>
-
             </div>
         </div>
     </div>

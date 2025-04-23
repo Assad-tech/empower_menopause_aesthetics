@@ -5,12 +5,12 @@
 @section('content')
     <div class="page bg-white">
         {{-- About Us Banner --}}
-        <!-- .page-inner -->
+        {{-- <!-- .page-inner -->
         <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <h1 class="page-title"> Manage About Us Banner</h1>
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
+                <!-- <p class="text-muted"> Resize your browser window to see it in action. </p> -->
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -81,7 +81,7 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
+        </div><!-- /.page-inner --> --}}
 
         {{-- AboutUs and Me Section --}}
         <!-- .page-inner -->
@@ -115,7 +115,7 @@
                             <div class="tab-pane fade active show" id="about-us" role="tabpanel">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="{{ route('admin.update.about-us') }}" method="POST"
+                                        <form id="aboutus-form" action="{{ route('admin.update.about-us') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
@@ -124,12 +124,11 @@
                                                     {{-- Heading --}}
                                                     <div class="form-group">
                                                         <h4>Heading</h4>
-                                                        <div id="summernote-heading" data-toggle="summernote"
-                                                            data-placeholder="Enter Heading" data-height="100">
-                                                            {!! old('heading', $about->heading ?? '') !!}
-                                                        </div>
-                                                        <input type="hidden" name="heading" id="heading">
-                                                        @error('heading')
+                                                        {{-- @dd($about->heading) --}}
+                                                        <input type="text" class="form-control"
+                                                            value="{{ $about->heading ?? '' }}" name="about_us_heading"
+                                                            id="aboutus-heading">
+                                                        @error('about_us_heading')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -138,15 +137,16 @@
 
                                             <div class="row pb-3">
                                                 <div class="col-sm-12">
-                                                    {{-- Description --}}
+                                                    <!-- About Us Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <div id="summernote-description" data-toggle="summernote"
+                                                        <div class="summernote-editor" id="summernote-description"
                                                             data-placeholder="Enter Description" data-height="150">
                                                             {!! old('description', $about->description ?? '') !!}
                                                         </div>
-                                                        <input type="hidden" name="description" id="description">
-                                                        @error('description')
+                                                        <input type="hidden" name="about_us_description"
+                                                            id="aboutus-description">
+                                                        @error('about_us_description')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -187,7 +187,8 @@
                             <div class="tab-pane fade" id="about-me" role="tabpanel">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="{{ route('admin.update.about-me', $aboutMe->id ?? null) }}"
+                                        <form id="aboutme-form"
+                                            action="{{ route('admin.update.about-me', $aboutMe->id ?? null) }}"
                                             method="POST" enctype="multipart/form-data">
 
                                             @csrf
@@ -197,12 +198,9 @@
                                                     {{-- Heading --}}
                                                     <div class="form-group">
                                                         <h4>Heading</h4>
-                                                        <div id="summernote-aboutme-heading" data-toggle="summernote"
-                                                            data-placeholder="Enter Heading" data-height="100">
-                                                            {!! old('heading', $aboutMe->heading ?? '') !!}
-                                                        </div>
-                                                        <input type="hidden" name="heading" id="aboutme-heading">
-                                                        @error('heading')
+                                                        <input type="text" class="form-control" name="about_me_heading"
+                                                            value="{{ $aboutMe->heading ?? '' }}" id="aboutme-heading">
+                                                        @error('about_me_heading')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -211,16 +209,16 @@
 
                                             <div class="row pb-3">
                                                 <div class="col-sm-12">
-                                                    {{-- Description --}}
+                                                    <!-- About Me Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <div id="summernote-aboutme-description" data-toggle="summernote"
+                                                        <div class="summernote-editor" id="summernote-aboutme-description"
                                                             data-placeholder="Enter Description" data-height="150">
                                                             {!! old('description', $aboutMe->description ?? '') !!}
                                                         </div>
-                                                        <input type="hidden" name="description"
+                                                        <input type="hidden" name="about_me_description"
                                                             id="aboutme-description">
-                                                        @error('description')
+                                                        @error('about_me_description')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -234,8 +232,7 @@
                                                         <h4>Image</h4>
                                                         <input type="file"
                                                             class="form-control dropify @error('image') is-invalid @enderror"
-                                                            name="image" {{--
-                                                            data-default-file="{{ asset('front/assets/images/' . $about->image) }}"> --}}
+                                                            name="image"
                                                             data-default-file="{{ isset($aboutMe) && $aboutMe->image ? asset('front/assets/images/' . $aboutMe->image) : asset('front/assets/images/default.png') }}">
 
                                                         @error('image')
@@ -291,52 +288,34 @@
                     }
                 },
             });
-            $('#dt-clients').DataTable({
-                responsive: true,
-                autoWidth: false,
-                dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                    "<'table-responsive'tr>" +
-                    "<'row align-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 d-flex justify-content-end'p>>",
-                language: {
-                    paginate: {
-                        previous: '<i class="fa fa-lg fa-angle-left"></i>',
-                        next: '<i class="fa fa-lg fa-angle-right"></i>'
-                    }
-                },
-            });
         });
     </script>
     <script>
-        // About Us
-        $(document).ready(function() {
-            // Initialize summernote
-            $('#summernote-heading').summernote();
-            $('#summernote-description').summernote();
+        window.onload = function() {
+            // Initialize all summernote editors using the shared class
+            $('.summernote-editor').each(function() {
+                const height = $(this).data('height') || 150;
+                const placeholder = $(this).data('placeholder') || 'Enter Description';
 
-            // Sync summernote data on submit
-            $('form').on('submit', function() {
-                $('#heading').val($('#summernote-heading').summernote('code'));
-                $('#description').val($('#summernote-description').summernote('code'));
-            });
-        });
-
-        // About Me
-        $(document).ready(function() {
-            $('#summernote-aboutme-heading').summernote({
-                placeholder: 'Enter Heading',
-                height: 100
+                $(this).summernote({
+                    placeholder: placeholder,
+                    height: height
+                });
             });
 
-            $('#summernote-aboutme-description').summernote({
-                placeholder: 'Enter Description',
-                height: 150
+            // Submit handlers
+            $('#aboutus-form').off('submit').on('submit', function(e) {
+                e.preventDefault();
+                $('#aboutus-description').val($('#summernote-description').summernote('code'));
+                this.submit();
             });
 
-            $('form').on('submit', function() {
-                $('#aboutme-heading').val($('#summernote-aboutme-heading').summernote('code'));
+            $('#aboutme-form').off('submit').on('submit', function(e) {
+                e.preventDefault();
                 $('#aboutme-description').val($('#summernote-aboutme-description').summernote('code'));
+                this.submit();
             });
-        });
+        };
     </script>
     <script>
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

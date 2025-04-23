@@ -7,20 +7,20 @@
     <title>EMA - @yield('title')</title>
 
     <!-- fav-icon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('front/assets/images/fav.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('front/assets/images/fav.png') }}">
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="{{asset('front/assets/bootstrap/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/bootstrap/bootstrap.css') }}">
 
     <!-- style -->
-    <link rel="stylesheet" href="{{asset('front/assets/style/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/style/style.css') }}">
 
     <!-- responsive -->
-    <link rel="stylesheet" href="{{asset('front/assets/style/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/style/responsive.css') }}">
 
     <!-- fontawesome -->
-    <link rel="stylesheet" href="{{asset('front/assets/fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/fontawesome/css/all.min.css') }}">
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,17 +34,23 @@
         rel="stylesheet">
 
     <!-- owl.carousel -->
-    <link rel="stylesheet" href="{{asset('front/assets/OwlCarousel/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/OwlCarousel/owl.theme.default.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/OwlCarousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/OwlCarousel/owl.theme.default.css') }}">
 
     <!-- animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{asset('front/assets/style/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/style/jquery.fancybox.min.css') }}">
 
     <!-- custom css start -->
     @stack('custom_css')
 
+    <!-- footer css  -->
+    <style>
+        .footer_active{
+            color: #000 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,17 +63,17 @@
     <!-- footer start -->
     @include('frontend.layouts.footer')
 
-    <script src="{{asset('front/assets/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('front/assets/bootstrap/js/dropdown.js')}}"> </script>
+    <script src="{{ asset('front/assets/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/assets/bootstrap/js/dropdown.js') }}"></script>
 
     <!-- owlcarousel -->
-    <script src="{{asset('front/assets/OwlCarousel/jquery.min.js')}}"></script>
-    <script src="{{asset('front/assets/OwlCarousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('front/assets/js/custom.js')}}"></script>
+    <script src="{{ asset('front/assets/OwlCarousel/jquery.min.js') }}"></script>
+    <script src="{{ asset('front/assets/OwlCarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/custom.js') }}"></script>
 
-    <script src="{{asset('front/assets/js/jquery.lazyload.min.js')}}"></script>
-    <script src="{{asset('front/assets/js/jquery.fancybox.min.js')}}"></script>
-    <script src="{{asset('front/assets/js/script.js')}}"></script>
+    <script src="{{ asset('front/assets/js/jquery.lazyload.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/script.js') }}"></script>
 
     <!-- animation aos js -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

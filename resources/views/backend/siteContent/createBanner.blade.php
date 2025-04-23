@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Update Home')
+@section('title', 'Add new Banner')
 @push('custom_css')
 
 @endpush
@@ -12,7 +12,7 @@
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <div class="d-flex justify-content-between">
-                    <h1 class="page-title"> Update Home </h1>
+                    <h1 class="page-title"> Add new Banner </h1>
                     <div class="btn-toolbar">
                         {{-- <button type="button" class="btn btn-primary">Add team</button> --}}
                     </div>
@@ -24,8 +24,7 @@
                 <div class="card card-fluid bg-light">
                     <!-- .card-body -->
                     <div class="card-body">
-                        <form action="{{ route('admin.update.home', $content->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('admin.store.banner') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">
@@ -35,19 +34,19 @@
                                         <input type="text" name="greeting" class="form-control" placeholder="Enter Greeting"
                                             value="{{ old('greeting', $content->greeting ?? '') }}">
                                         @error('greeting')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     {{-- Site Name --}}
                                     <div class="form-group">
-                                        <h4>Site Name</h4>
+                                        <h4>Page Heading</h4>
                                         <input type="text" name="site_name" class="form-control"
-                                            placeholder="Enter Site Name"
+                                            placeholder="Enter Page Heading"
                                             value="{{ old('site_name', $content->site_name ?? '') }}">
                                         @error('site_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -57,11 +56,10 @@
                                         <h4>Banner Description</h4>
                                         <div id="summernote-banner" data-toggle="summernote"
                                             data-placeholder="Enter Banner Description" data-height="150">
-                                            {!! old('banner_description', $content->banner_description ?? '') !!}
                                         </div>
                                         <input type="hidden" name="banner_description" id="banner_description">
                                         @error('banner_description')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -69,14 +67,16 @@
                                     {{-- Banner --}}
                                     <div class="form-group">
                                         <h4>Banner</h4>
-                                        <input type="file" name="banner_image" class="form-control dropify"
-                                            data-default-file="{{ asset('front/assets/images/banners/' . $content->banner) }}">
+                                        <input type="file" name="banner_image" class="form-control dropify">
                                         @error('banner_image')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                {{-- <div class="col-sm-6">
+                            </div>
+
+                            {{-- <div class="row">
+                                <div class="col-sm-6">
                                     <!-- Banner Link -->
                                     <div class="form-group">
                                         <h4>Banner Link</h4>
@@ -87,11 +87,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div> --}}
-                            </div>
-
-                            {{-- <div class="row">
-
+                                </div>
                                 <div class="col-sm-6">
                                     <!-- Link Text -->
                                     <div class="form-group">

@@ -19,7 +19,7 @@ class FAQsController extends Controller
 
     public function create()
     {
-        return view('backend.faqs.createFAQs');
+        return view('backend.faqs.createFaqs');
     }
 
     public function store(Request $request)
@@ -66,7 +66,7 @@ class FAQsController extends Controller
     public function edit($id)
     {
         $faq = FAQ::findOrFail($id);
-        return view('backend.faqs.editFAQs', compact('faq'));
+        return view('backend.faqs.editFaqs', compact('faq'));
     }
 
     public function update(Request $request, $id)

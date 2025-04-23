@@ -65,14 +65,13 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     // Admin Dashboard Routes
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('admin.dashboard');
-        // Manage Home Banners, Sliders, Desc section
-        Route::get('/home', 'viewHome')->name('admin.manage.home');
+        // Manage Home Banner, Testimonials
+        Route::get('/testimonials', 'viewHome')->name('admin.manage.home');
         Route::get('/add/home', 'create')->name('admin.add.home');
         Route::post('/store/home', 'store')->name('admin.store.home');
         Route::get('/edit/home/{id}', 'edit')->name('admin.edit.home');
         Route::post('/update/home/{id}', 'update')->name('admin.update.home');
         Route::get('/delete/home/{id}', 'delete')->name('admin.delete.home');
-
         // Testimonials
         Route::get('/create/testimonials', 'createTestimonial')->name('admin.create.testimonials');
         Route::post('/store/testimonials', 'storeTestimonial')->name('admin.store.testimonials');
@@ -88,16 +87,23 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
 
         Route::get('/social-links', 'socialLinks')->name('admin.social-links');
         Route::post('/update/social-links', 'updateSocialLinks')->name('admin.social-links.update');
-    });
 
+        // Banners Routes
+        Route::get('/banners', 'banners')->name('admin.banners');
+        Route::get('/add/banner', 'create')->name('admin.add.banner');
+        Route::post('/store/banner', 'store')->name('admin.store.banner');
+        Route::get('/edit/banner/{id}', 'edit')->name('admin.edit.banner');
+        Route::post('/update/banner/{id}', 'update')->name('admin.update.banner');
+        Route::get('/delete/banner/{id}', 'delete')->name('admin.delete.banner');
+    });
     // About Us Routes
     Route::controller(AboutUsController::class)->group(function () {
         // Banner
-        Route::get('about-us/add-banner/', 'createBanner')->name('admin.about-us.create.banner');
-        Route::post('/about-us/banner/store', 'storeBanner')->name('admin.about-us.store.banner');
-        Route::get('/about-us/banner/edit/{id}', 'editBanner')->name('admin.about-us.edit.banner');
-        Route::post('/about-us/banner/update/{id}', 'updateBanner')->name('admin.about-us.update.banner');
-        Route::get('/about-us/banner/delete/{id}', 'deleteBanner')->name('admin.about-us.delete.banner');
+        // Route::get('about-us/add-banner/', 'createBanner')->name('admin.about-us.create.banner');
+        // Route::post('/about-us/banner/store', 'storeBanner')->name('admin.about-us.store.banner');
+        // Route::get('/about-us/banner/edit/{id}', 'editBanner')->name('admin.about-us.edit.banner');
+        // Route::post('/about-us/banner/update/{id}', 'updateBanner')->name('admin.about-us.update.banner');
+        // Route::get('/about-us/banner/delete/{id}', 'deleteBanner')->name('admin.about-us.delete.banner');
         // About Us
         Route::get('/about-us', 'index')->name('admin.manage.about-us');
         Route::post('/about-us/update', 'updateAboutUs')->name('admin.update.about-us');
@@ -116,15 +122,14 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         // Route::post('/about-us/client/update/{id}', 'updateClient')->name('admin.about-us.update.client');
         // Route::get('/about-us/client/delete/{id}', 'deleteClient')->name('admin.about-us.delete.client');
     });
-
     // Services Routes
     Route::controller(ServicesController::class)->group(function () {
         // Banner
-        Route::get('services/add-banner/', 'createBanner')->name('admin.services.create.banner');
-        Route::post('/services/banner/store', 'storeBanner')->name('admin.services.store.banner');
-        Route::get('/services/banner/edit/{id}', 'editBanner')->name('admin.services.edit.banner');
-        Route::post('/services/banner/update/{id}', 'updateBanner')->name('admin.services.update.banner');
-        Route::get('/services/banner/delete/{id}', 'deleteBanner')->name('admin.services.delete.banner');
+        // Route::get('services/add-banner/', 'createBanner')->name('admin.services.create.banner');
+        // Route::post('/services/banner/store', 'storeBanner')->name('admin.services.store.banner');
+        // Route::get('/services/banner/edit/{id}', 'editBanner')->name('admin.services.edit.banner');
+        // Route::post('/services/banner/update/{id}', 'updateBanner')->name('admin.services.update.banner');
+        // Route::get('/services/banner/delete/{id}', 'deleteBanner')->name('admin.services.delete.banner');
         // Services
         Route::get('/services', 'index')->name('admin.manage.services');
         Route::get('/add/service', 'create')->name('admin.add.service');
@@ -133,7 +138,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         Route::post('/update/service/{id}', 'update')->name('admin.update.service');
         Route::get('/delete/service/{id}', 'delete')->name('admin.delete.service');
     });
-
     // Categories Routes
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/categories', 'index')->name('admin.manage.categories');
@@ -143,7 +147,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         Route::post('/update/category/{id}', 'update')->name('admin.update.category');
         Route::get('/delete/category/{id}', 'destroy')->name('admin.delete.category');
     });
-
     // Products Routes
     Route::controller(ProductController::class)->group(function () {
         // Banner
@@ -176,7 +179,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         Route::post('/faqs/update/{id}', 'update')->name('admin.update.faqs');
         Route::get('/faqs/delete/{id}', 'delete')->name('admin.delete.faqs');
     });
-
     // Contact Us Routes
     Route::controller(ContactUsController::class)->group(function () {
         // Banner
@@ -204,4 +206,5 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/contact-us', 'contactUs')->name('contact.us');
     Route::post('/contact-us/store', 'store')->name('contact.store');
     Route::get('/book-a-consultation', 'bookAConsultation')->name('book.consultation');
+    Route::post('/emails/store', 'storeEmails')->name('emails.store');
 });

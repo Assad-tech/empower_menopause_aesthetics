@@ -33,7 +33,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th> Category </th>
-                                    <th> Slug </th>
+                                    {{-- <th> Slug </th> --}}
                                     <th> Action</th>
                                 </tr>
                             </thead>
@@ -42,7 +42,7 @@
                                     <tr>
                                         <td> {{ $i++ }} </td>
                                         <td> {{ $data->name ?? 'N/A' }}</td>
-                                        <td> {{ $data->slug ?? 'N/A' }}</td>
+                                        {{-- <td> {{ $data->slug ?? 'N/A' }}</td> --}}
                                         <td class="m-3">
                                             <div>
                                                 <a href="{{ route('admin.edit.category', $data->id) }}"
@@ -59,7 +59,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th> Category </th>
-                                    <th> Slug </th>
+                                    {{-- <th> Slug </th> --}}
                                     <th> Action</th>
                                 </tr>
                             </tfoot>

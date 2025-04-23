@@ -7,12 +7,11 @@
     <!-- .page -->
     <div class="page bg-white">
         {{-- Faqs Banner --}}
-        <!-- .page-inner -->
+        {{-- <!-- .page-inner -->
         <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <h1 class="page-title"> Manage FAQs Banner</h1>
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -42,7 +41,6 @@
                             <tbody>
                                 @foreach ($banners as $data)
                                     <tr>
-                                        {{-- @dd($data->banner) --}}
                                         <td> {{ $i++ }} </td>
                                         <td>
                                             <img class="img rounded" width="100"
@@ -84,8 +82,8 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
-        
+        </div><!-- /.page-inner --> --}}
+
         {{-- FAQs --}}
         <!-- .page-inner -->
         <div class="page-inner">
@@ -190,7 +188,7 @@
         });
         $(document).ready(function() {
             $('#faqs-responsive').DataTable({
-                responsive: true,
+                responsive: false,
                 autoWidth: false,
                 dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                     "<'table-responsive'tr>" +

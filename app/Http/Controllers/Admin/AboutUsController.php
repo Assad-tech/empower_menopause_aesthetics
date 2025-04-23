@@ -23,9 +23,10 @@ class AboutUsController extends Controller
 
     public function updateAboutUs(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
-            'heading' => 'required|string',
-            'description' => 'required|string',
+            'about_us_heading' => 'required|string',
+            'about_us_description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
@@ -35,19 +36,20 @@ class AboutUsController extends Controller
         // Handle Image upload if provided
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = time() . '_about.' . $file->getClientOriginalExtension();
-            $file->move(public_path('front/assets/images'), $fileName);
+            $fileName = time() . '_about_us.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('front/assets/images/'), $fileName);
 
             // Delete old image if exists
             if (!empty($about->image) && file_exists(public_path('front/assets/images' . $about->image))) {
-                unlink(public_path('front/assets/images' . $about->image));
+                unlink(public_path('front/assets/images/' . $about->image));
             }
 
             $about->image = $fileName;
         }
 
-        $about->heading = $validated['heading'];
-        $about->description = $validated['description'];
+        $about->heading = $validated['about_us_heading'];
+        $about->description = $validated['about_us_description'];
         $about->save();
 
         toastr()->success('About Us details updated successfully!');
@@ -58,8 +60,8 @@ class AboutUsController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'heading' => 'required|string',
-            'description' => 'required|string',
+            'about_me_heading' => 'required|string',
+            'about_me_description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
@@ -69,7 +71,7 @@ class AboutUsController extends Controller
         // Handle Image upload if provided
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = time() . '_about.' . $file->getClientOriginalExtension();
+            $fileName = time() . '_about_me.' . $file->getClientOriginalExtension();
             $file->move(public_path('front/assets/images'), $fileName);
 
             // Delete old image if exists
@@ -80,8 +82,8 @@ class AboutUsController extends Controller
             $about->image = $fileName;
         }
 
-        $about->heading = $validated['heading'];
-        $about->description = $validated['description'];
+        $about->heading = $validated['about_me_heading'];
+        $about->description = $validated['about_me_description'];
         $about->save();
 
         toastr()->success('About Me details updated successfully!');

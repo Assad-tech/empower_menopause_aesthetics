@@ -8,11 +8,10 @@
     <div class="page bg-white">
         {{-- Services Banner --}}
         <!-- .page-inner -->
-        <div class="page-inner">
+        {{-- <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
                 <h1 class="page-title"> Manage Services Banner</h1>
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -42,7 +41,6 @@
                             <tbody>
                                 @foreach ($banners as $data)
                                     <tr>
-                                        {{-- @dd($data->banner) --}}
                                         <td> {{ $i++ }} </td>
                                         <td>
                                             <img class="img rounded" width="100"
@@ -84,7 +82,7 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
+        </div><!-- /.page-inner --> --}}
         
         {{-- Services --}}
         <!-- .page-inner -->
@@ -114,8 +112,8 @@
                                     <th>#</th>
                                     <th> Image</th>
                                     <th> Title </th>
-                                    <th> Description </th>
-                                    <th> Slug</th>
+                                    {{-- <th> Description </th> --}}
+                                    <th> Status</th>
                                     <th> Action</th>
                                 </tr>
                             </thead>
@@ -130,18 +128,18 @@
                                                 alt="{{ $data->site_name }}">
                                         </td>
                                         <td> {{ $data->title ?? 'N/A' }}</td>
-                                        <td>
+                                        {{-- <td>
                                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="{!! strip_tags($data->description) !!}">
                                                 {!! Str::limit(strip_tags($data->description ?? 'N/A'), 40, '...') !!}
                                             </span>
-                                        </td>
+                                        </td> --}}
                                         <td>
-                                            <span data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="{{ $data->slug }}">
-                                                {{ Str::limit($data->slug ?? 'N/A', 20, '...') }}
-                                            </span>
-
+                                            @if ($data->status == 1)
+                                                <span class="badge badge-success">Active</span>
+                                            @else
+                                                <span class="badge badge-danger">Inactive</span>
+                                            @endif
                                         </td>
 
                                         <td class="m-3">
@@ -161,7 +159,7 @@
                                     <th>#</th>
                                     <th> Image </th>
                                     <th> Title </th>
-                                    <th> Description </th>
+                                    {{-- <th> Description </th> --}}
                                     <th> Slug</th>
                                     <th> Action</th>
                                 </tr>
@@ -184,7 +182,7 @@
     <script>
         $(document).ready(function() {
             $('#dt-responsive').DataTable({
-                responsive: true,
+                responsive: false,
                 autoWidth: false,
                 dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                     "<'table-responsive'tr>" +

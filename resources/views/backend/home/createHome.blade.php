@@ -75,7 +75,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-sm-6">
                                     <!-- Banner Link -->
                                     <div class="form-group">
@@ -100,7 +100,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
