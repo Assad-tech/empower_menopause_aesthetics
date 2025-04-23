@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\NewsLatterEmail;
 use App\Models\SiteContent;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
@@ -213,5 +214,22 @@ class SiteContentController extends Controller
         $home->delete();
         toastr()->success('Banner deleted successfully!');
         return redirect()->route('admin.banners');
+    }
+
+    // _______ End Banners _______
+
+    // News Latter Emails
+    public function getemails()
+    {
+        $emails = NewsLatterEmail::all();
+        return view('backend.siteContent.newsLatterEmails', compact('emails'));
+    }
+
+    public function deleteEmail($id)
+    {
+        $email = NewsLatterEmail::find($id);
+        $email->delete();
+        toastr()->success('Email deleted successfully!');
+        return redirect()->route('admin.get.emails');
     }
 }

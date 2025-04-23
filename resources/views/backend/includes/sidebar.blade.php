@@ -128,6 +128,13 @@
                         </a>
                     </li>
 
+                    <li class="menu-item {{ Route::is('admin.get.emails') ? 'has-active' : '' }}">
+                        <a href="{{ route('admin.get.emails') }}" class="menu-link">
+                            <span class="menu-icon far fa-file"></span>
+                            <span class="menu-text">News Latter Emails</span>
+                        </a>
+                    </li>
+
                     <!-- .menu-item -->
                     {{-- <li class="menu-item has-child">
                         <a href="#" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span
@@ -423,9 +430,9 @@
             </nav><!-- /.stacked-menu -->
         </div><!-- /.aside-menu -->
         <!-- Skin changer -->
-        <footer class="aside-footer border-top p-2">
+        {{-- <footer class="aside-footer border-top p-2">
             <button class="btn btn-light btn-block text-primary" data-toggle="skin"><span
                     class="d-compact-menu-none">Night mode</span> <i class="fas fa-moon ml-1"></i></button>
-        </footer><!-- /Skin changer -->
+        </footer><!-- /Skin changer --> --}}
     </div><!-- /.aside-content -->
 </aside><!-- /.app-aside -->

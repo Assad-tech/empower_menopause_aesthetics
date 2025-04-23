@@ -95,6 +95,10 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         Route::get('/edit/banner/{id}', 'edit')->name('admin.edit.banner');
         Route::post('/update/banner/{id}', 'update')->name('admin.update.banner');
         Route::get('/delete/banner/{id}', 'delete')->name('admin.delete.banner');
+
+        // News Latter Emails
+        Route::get('/news-latter-emails', 'getemails')->name('admin.get.emails');
+        Route::get('/delete/news-latter-email/{id}', 'deleteEmail')->name('admin.delete.email');
     });
     // About Us Routes
     Route::controller(AboutUsController::class)->group(function () {

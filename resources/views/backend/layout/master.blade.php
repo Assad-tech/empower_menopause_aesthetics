@@ -8,9 +8,9 @@
     <title> Admin | @yield('title')</title>
 
     <!-- FAVICONS -->
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('admin/assets/apple-touch-icon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('admin/assets/favicon.ico') }}">
-    <meta name="theme-color" content="#3063A0"><!-- End FAVICONS -->
+    {{-- <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('admin/assets/apple-touch-icon.png') }}"> --}}
+    <link rel="shortcut icon" href="{{ asset('front/assets/images/fav.png') }}">
+    {{-- <meta name="theme-color" content="#3063A0"><!-- End FAVICONS --> --}}
     <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End GOOGLE FONT -->
     <!-- BEGIN PLUGINS STYLES -->
