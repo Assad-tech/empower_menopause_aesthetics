@@ -43,9 +43,9 @@
                                     {{-- Site Name --}}
                                     <div class="form-group">
                                         <h4>Page Heading</h4>
-                                        <input type="text" name="site_name" class="form-control bg-muted"
+                                        <input type="text" name="site_name" class="form-control"
                                             placeholder="Enter Page Heading"
-                                            value="{{ old('site_name', $content->site_name ?? '') }}" readonly>
+                                            value="{{ old('site_name', $content->site_name ?? '') }}">
                                         @error('site_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror

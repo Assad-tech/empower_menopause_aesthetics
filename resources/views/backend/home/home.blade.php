@@ -9,11 +9,9 @@
     <!-- .page -->
     <div class="page bg-white">
         <!-- .page-inner -->
-        <div class="page-inner">
+        {{-- <div class="page-inner">
             <!-- .page-title-bar -->
             <header class="page-title-bar">
-                {{-- <h1 class="page-title"> Manage Home</h1> --}}
-                {{-- <p class="text-muted"> Resize your browser window to see it in action. </p><!-- /title --> --}}
             </header><!-- /.page-title-bar -->
             <!-- .page-section -->
             <div class="page-section">
@@ -22,7 +20,7 @@
                     <!-- .card-header -->
                     <div class="card-header">
                         <h1 class="page-title"> Manage Home Banner</h1>
-                        {{-- <a href="{{ route('admin.add.home') }}" class="btn btn-primary ">Add New</a> --}}
+                        <!-- <a href="{{ route('admin.add.home') }}" class="btn btn-primary ">Add New</a> -->
                     </div>
                     @php
                         $i = 1;
@@ -63,8 +61,8 @@
                                             <div>
                                                 <a href="{{ route('admin.edit.home', $data->id) }}"
                                                     class="btn btn-info">Edit</a>
-                                                {{-- <a href="{{ route('admin.delete.home', $data->id) }}" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this?')">Delete</a> --}}
+                                                <!-- <a href="{{ route('admin.delete.home', $data->id) }}" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this?')">Delete</a> -->
                                             </div>
                                         </td>
                                     </tr>
@@ -84,7 +82,7 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
-        </div><!-- /.page-inner -->
+        </div><!-- /.page-inner --> --}}
 
         {{-- Testimonial --}}
         <!-- .page-inner -->

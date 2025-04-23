@@ -140,12 +140,9 @@
                                                     <!-- About Us Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <div class="summernote-editor" id="summernote-description"
-                                                            data-placeholder="Enter Description" data-height="150">
+                                                        <textarea name="about_us_description" class="form-control summernote-editor" id="summernote-description">
                                                             {!! old('description', $about->description ?? '') !!}
-                                                        </div>
-                                                        <input type="hidden" name="about_us_description"
-                                                            id="aboutus-description">
+                                                        </textarea>
                                                         @error('about_us_description')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
@@ -212,12 +209,9 @@
                                                     <!-- About Me Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <div class="summernote-editor" id="summernote-aboutme-description"
-                                                            data-placeholder="Enter Description" data-height="150">
+                                                        <textarea name="about_me_description" class="form-control summernote-editor" id="summernote-aboutme-description">
                                                             {!! old('description', $aboutMe->description ?? '') !!}
-                                                        </div>
-                                                        <input type="hidden" name="about_me_description"
-                                                            id="aboutme-description">
+                                                        </textarea>
                                                         @error('about_me_description')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
@@ -268,59 +262,4 @@
 @endsection
 
 @push('custom_js')
-    <script src="{{ asset('admin/assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}">
-    </script>
-    <script src="{{ asset('admin/assets/javascript/pages/dataTables.bootstrap.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#dt-responsive').DataTable({
-                responsive: true,
-                autoWidth: false,
-                dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                    "<'table-responsive'tr>" +
-                    "<'row align-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 d-flex justify-content-end'p>>",
-                language: {
-                    paginate: {
-                        previous: '<i class="fa fa-lg fa-angle-left"></i>',
-                        next: '<i class="fa fa-lg fa-angle-right"></i>'
-                    }
-                },
-            });
-        });
-    </script>
-    <script>
-        window.onload = function() {
-            // Initialize all summernote editors using the shared class
-            $('.summernote-editor').each(function() {
-                const height = $(this).data('height') || 150;
-                const placeholder = $(this).data('placeholder') || 'Enter Description';
-
-                $(this).summernote({
-                    placeholder: placeholder,
-                    height: height
-                });
-            });
-
-            // Submit handlers
-            $('#aboutus-form').off('submit').on('submit', function(e) {
-                e.preventDefault();
-                $('#aboutus-description').val($('#summernote-description').summernote('code'));
-                this.submit();
-            });
-
-            $('#aboutme-form').off('submit').on('submit', function(e) {
-                e.preventDefault();
-                $('#aboutme-description').val($('#summernote-aboutme-description').summernote('code'));
-                this.submit();
-            });
-        };
-    </script>
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
 @endpush

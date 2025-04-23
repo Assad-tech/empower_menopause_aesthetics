@@ -24,12 +24,13 @@ class HomeController extends Controller
     // homepage
     public function index()
     {
-        $content = Home::first();
+        // $content = Home::first();
+        $content = Banner::where('page', 'home')->first();
         $testimonials = Testimonial::where('status', 1)->get();
         $services = Service::where('status', 1)->get();
         $faqs = FAQ::where('status', 1)->get();
         $about = AboutUs::first();
-        // dd($aboutUs);
+        // dd($content);
         return view('frontend.index', compact('content', 'testimonials', 'services', 'faqs', 'about'));
     }
 

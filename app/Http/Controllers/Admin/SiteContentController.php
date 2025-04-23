@@ -137,7 +137,7 @@ class SiteContentController extends Controller
         $request->validate([
             'greeting' => 'required|string',
             'site_name' => 'required|string',
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'banner_description' => 'required|string',
             // 'link_on_banner' => 'nullable|url',
             // 'link_text' => 'nullable|string',
@@ -177,7 +177,7 @@ class SiteContentController extends Controller
         $request->validate([
             'greeting' => 'required|string',
             'site_name' => 'required|string',
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'banner_description' => 'required|string',
             // 'link_on_banner' => 'nullable|url',
             // 'link_text' => 'nullable|string',
