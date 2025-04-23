@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-left">
                     <div class="about-content">
-                        {!! $about->heading ?? 'About Us' !!}
+                        <h3 class="sub-h">{{ $about->sub_heading ?? 'About Us' }}</h3>                        
                         {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                         <button>for more details</button>

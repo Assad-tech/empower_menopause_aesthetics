@@ -128,7 +128,7 @@ class HomeController extends Controller
     public function storeEmails(Request $request)
     {
         $request->validate([
-            'email' => 'nullable|email|unique:news_latter_emails,email',
+            'email' => 'required|email|unique:news_latter_emails,email',
         ]);
 
         $email = new NewsLatterEmail();
