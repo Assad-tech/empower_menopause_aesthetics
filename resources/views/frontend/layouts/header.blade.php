@@ -11,11 +11,13 @@
     <div class="container emp-header-top">
         <div class="row emp-header-top-row">
             <div class="col-md-5 logo-col">
-                @if ($logo)
-                    <img src="{{ asset('front/assets/images/' . $logo->logo) }}" alt="">
-                @else
-                    <img src="{{ asset('front/assets/images/logo.png') }}" alt="">
-                @endif
+                <a href="{{ route('home') }}">
+                    @if ($logo)
+                        <img src="{{ asset('front/assets/images/' . $logo->logo) }}" alt="">
+                    @else
+                        <img src="{{ asset('front/assets/images/logo.png') }}" alt="">
+                    @endif
+                </a>
             </div>
             <div class="col-md-7">
                 <div class="row">

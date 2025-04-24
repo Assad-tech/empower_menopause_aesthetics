@@ -77,14 +77,14 @@
 
                             <div class="ser-text-box">
                                 <h4>{{ $service->title ?? ' ' }}</h4>
-                                {!! $service->description ?? ' ' !!}
-                                <a href="#.{{ $service->slug }}">Read More</a>
+                                {{-- {!! $service->description ?? ' ' !!} --}}
+                                <a href="{{ route('view.service', $service->slug) }}">Read More</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-            <div class="ser-btn"> <a class="dark-btn" href="#">Discover Our Approach</a> </div>
+            <div class="ser-btn"> <a class="dark-btn" href="{{ route('services') }}">Discover Our Approach</a> </div>
         </div>
     </section>
 

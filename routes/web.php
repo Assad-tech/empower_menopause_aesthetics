@@ -205,6 +205,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about-us', 'aboutUs')->name('about.us');
     Route::get('/services', 'services')->name('services');
+    Route::get('/services/view/{slug}', 'viewService')->name('view.service');
     Route::get('/products', 'products')->name('products');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/contact-us', 'contactUs')->name('contact.us');

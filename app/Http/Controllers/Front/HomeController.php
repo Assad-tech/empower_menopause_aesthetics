@@ -54,6 +54,14 @@ class HomeController extends Controller
         return view('frontend.services', compact('banner', 'services', 'testimonials'));
     }
 
+    // view Service
+    public function viewService($slug){
+        $service = Service::where('slug', $slug)->first();
+        // return $service;
+        $testimonials = Testimonial::where('status', 1)->get();
+        return view('frontend.viewService', compact('service', 'testimonials'));
+    }
+
     // products
     public function products(Request $request)
     {

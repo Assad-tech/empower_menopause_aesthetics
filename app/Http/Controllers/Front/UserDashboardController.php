@@ -9,6 +9,6 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        // return view('frontend.homepage.index', compact('content'));
+        return view('frontend.userDashboard');
     }
 }

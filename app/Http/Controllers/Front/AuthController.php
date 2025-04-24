@@ -26,6 +26,7 @@ class AuthController extends Controller
 
             return redirect()->intended(route('user.home'));
         }
+        toastr()->error('Invalid email or password');
         return back()->withInput($request->only('email', 'remember'));
     }
 
@@ -37,6 +38,8 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::guard('web')->logout();
-        return redirect()->route('user.login');
+        // return redirect()->route('user.login');
+        return redirect()->route('home');
     }
 }
+

@@ -1,7 +1,6 @@
 @extends('backend.layout.master')
 @section('title', 'Add new service')
 @push('custom_css')
-
 @endpush
 @section('content')
 
@@ -49,7 +48,7 @@
                                         @enderror
                                     </div>
                                 </div> --}}
-                                {{-- <div class="col-sm-12">
+                                <div class="col-sm-12">
                                     <!-- Description -->
                                     <div class="form-group">
                                         <h4>Description</h4>
@@ -61,7 +60,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div> --}}
+                                </div>
                                 {{-- Image --}}
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -88,8 +87,8 @@
 
 @push('custom_js')
     <script>
-        $(document).ready(function () {
-            $(document).on('theme:init', function () {
+        $(document).ready(function() {
+            $(document).on('theme:init', function() {
                 new SummernoteDemo();
             });
             $('#summernote-description').summernote({
@@ -98,10 +97,9 @@
             });
 
             // Fix here: sync summernote-description to description input
-            $('form').on('submit', function () {
+            $('form').on('submit', function() {
                 $('#description').val($('#summernote-description').summernote('code'));
             });
         });
     </script>
-
 @endpush

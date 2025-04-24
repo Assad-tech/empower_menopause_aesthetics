@@ -1,50 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from uselooper.com/auth-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Mar 2025 17:51:24 GMT -->
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title> Sign Up | Looper - Bootstrap 4 Admin Theme </title>
-    <meta property="og:title" content="Sign Up">
-    <meta name="author" content="Beni Arisandi">
-    <meta property="og:locale" content="en_US">
-    <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
-    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
-    <link rel="canonical" href="index-2.html">
-    <meta property="og:url" content="index-2.html">
-    <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
-    <script type="application/ld+json">
-      {
-        "name": "Looper - Bootstrap 4 Admin Theme",
-        "description": "Responsive admin theme build on top of Bootstrap 4",
-        "author":
-        {
-          "@type": "Person",
-          "name": "Beni Arisandi"
-        },
-        "@type": "WebSite",
-        "url": "",
-        "headline": "Sign Up",
-        "@context": "http://schema.org"
-      }
-    </script><!-- End SEO tag -->
+    <title> Sign Up | New User </title>
+
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
-    <link rel="shortcut icon" href="assets/favicon.ico">
+    {{-- <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png"> --}}
+    <link rel="shortcut icon" href="{{ asset('front/assets/images/fav.png') }}">
     <meta name="theme-color" content="#3063A0"><!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End Google font -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link rel="stylesheet" href="{{asset('admin/assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css') }}">
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link rel="stylesheet" href="{{asset('admin/assets/stylesheets/theme.min.css')}}" data-skin="default">
-    <link rel="stylesheet" href="{{asset('admin/assets/stylesheets/theme-dark.min.css')}}" data-skin="dark">
-    <link rel="stylesheet" href="{{asset('admin/assets/stylesheets/custom.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/stylesheets/theme.min.css') }}" data-skin="default">
+    <link rel="stylesheet" href="{{ asset('admin/assets/stylesheets/theme-dark.min.css') }}" data-skin="dark">
+    <link rel="stylesheet" href="{{ asset('admin/assets/stylesheets/custom.css') }}">
     <script>
         var skin = localStorage.getItem('skin') || 'default';
         var disabledSkinStylesheet = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
@@ -57,15 +33,14 @@
 </head>
 
 <body>
-    <!--[if lt IE 10]>
-    <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
-    <![endif]-->
     <!-- .auth -->
     <main class="auth">
-        <header id="auth-header" class="auth-header"
-            style="background-image: url(assets/images/illustration/img-1.png);">
+        @php
+            $logo = getSiteContent('footer_logo');
+        @endphp
+        <header id="auth-header" class="auth-header" style="background-color: #C6B19F;">
             <h1>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="64"
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="64"
                     viewbox="0 0 351 100">
                     <defs>
                         <path id="a"
@@ -78,12 +53,24 @@
                         </path>
                         <use class="fill-warning" xlink:href="#a"></use>
                     </g>
-                </svg> <span class="sr-only">Sign Up</span>
+                </svg> <span class="sr-only">Sign Up</span> --}}
+                @if ($logo)
+                    <img src="{{ asset('front/assets/images/' . $logo->footer_logo) }}" alt="">
+                @else
+                    <img src="{{ asset('front/assets/images/footer-logo.webp') }}" alt="">
+                @endif
+                <p class="sr-only">Sign Up</p>
             </h1>
-            <p> Already have an account? please <a href="{{ route('user.login') }}">Sign In</a>
-            </p>
         </header><!-- form -->
         <form class="auth-form">
+            <p class="text-center">Sign up new account</p>
+            <!-- .form-group -->
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input type="text" id="name" class="form-control" placeholder="Name" required=""
+                        autofocus=""> <label for="name">Name</label>
+                </div>
+            </div><!-- /.form-group -->
             <!-- .form-group -->
             <div class="form-group">
                 <div class="form-label-group">
@@ -94,15 +81,17 @@
             <!-- .form-group -->
             <div class="form-group">
                 <div class="form-label-group">
-                    <input type="text" id="inputUser" class="form-control" placeholder="Username" required=""> <label
-                        for="inputUser">Username</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                        required="">
+                    <label for="inputPassword">Password</label>
                 </div>
             </div><!-- /.form-group -->
             <!-- .form-group -->
             <div class="form-group">
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-                    <label for="inputPassword">Password</label>
+                    <input type="password" id="password_confrimation" class="form-control" placeholder="Confirm Password"
+                        required="">
+                    <label for="password_confrimation">Confirm Password</label>
                 </div>
             </div><!-- /.form-group -->
             <!-- .form-group -->
@@ -110,37 +99,41 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             </div><!-- /.form-group -->
             <!-- .form-group -->
-            <div class="form-group text-center">
+            {{-- <div class="form-group text-center">
                 <div class="custom-control custom-control-inline custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="newsletter"> <label
                         class="custom-control-label" for="newsletter">Sign me up for the newsletter</label>
                 </div>
-            </div><!-- /.form-group -->
+            </div><!-- /.form-group --> --}}
             <!-- recovery links -->
-            <p class="text-center text-muted mb-0"> By creating an account you agree to the <a href="#">Terms of Use</a>
-                and <a href="#">Privacy Policy</a>. </p><!-- /recovery links -->
+            <p class="text-center text-muted"> Already have an account? please <a href="{{ route('user.login') }}">Sign
+                    In</a>
+            </p>
+            {{-- <p class="text-center text-muted mb-0"> By creating an account you agree to the <a href="#">Terms of
+                    Use</a>
+                and <a href="#">Privacy Policy</a>. </p><!-- /recovery links --> --}}
         </form><!-- /.auth-form -->
         <!-- copyright -->
-        <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>
+        <footer class="auth-footer"> &copy; {{ date('Y') }} All Rights Reserved. </footer>
     </main><!-- /.auth -->
     <!-- BEGIN BASE JS -->
-    <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/assets/vendor/popper.js/umd/popper.min.js')}}"></script>
-    <script src="{{asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script> <!-- END BASE JS -->
+    <script src="{{ asset('admin/assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/popper.js/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script> <!-- END BASE JS -->
     <!-- BEGIN PLUGINS JS -->
-    <script src="{{asset('admin/assets/vendor/particles.js/particles.js')}}"></script>
+    <script src="{{ asset('admin/assets/vendor/particles.js/particles.js') }}"></script>
     <script>
         /**
          * Keep in mind that your scripts may not always be executed after the theme is completely ready,
          * you might need to observe the `theme:load` event to make sure your scripts are executed after the theme is ready.
          */
         $(document).on('theme:init', () => {
-        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-        particlesJS.load('auth-header', 'assets/javascript/pages/particles.json');
-      })
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            particlesJS.load('auth-header', 'assets/javascript/pages/particles.json');
+        })
     </script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
-    <script src="{{asset('admin/assets/javascript/theme.js')}}"></script> <!-- END THEME JS -->
+    <script src="{{ asset('admin/assets/javascript/theme.js') }}"></script> <!-- END THEME JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
     <script>
@@ -153,7 +146,4 @@
         gtag('config', 'UA-116692175-1');
     </script>
 </body>
-
-<!-- Mirrored from uselooper.com/auth-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Mar 2025 17:51:24 GMT -->
-
 </html>

@@ -75,8 +75,7 @@
             </div><!-- /.form-group -->
             <!-- .form-group -->
             <!-- copyright -->
-            <p class="mb-0 px-3 text-muted text-center"> &copy; {{ date('Y') }} All Rights Reserved. <a
-                    href="#">Privacy</a> and <a href="#">Terms</a>
+            <p class="mb-0 px-3 text-muted text-center"> &copy; {{ date('Y') }} All Rights Reserved.
             </p>
         </form><!-- /.auth-form -->
         @php

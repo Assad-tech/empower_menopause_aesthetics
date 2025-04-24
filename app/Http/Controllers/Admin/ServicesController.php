@@ -27,7 +27,7 @@ class ServicesController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => 'required|string',
-            // 'description' => 'required|string',
+            'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             // 'icon' => 'nullable|string',
         ]);
@@ -57,7 +57,6 @@ class ServicesController extends Controller
         // $newService->icon = $request->icon;
         $newService->description = $request->description??"null";
         $newService->status = 1;
-
         $newService->save();
 
         toastr()->success('Service created successfully!');
@@ -75,7 +74,7 @@ class ServicesController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => 'required|string',
-            // 'description' => 'required|string',
+            'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             // 'icon' => 'nullable|string',
         ]);

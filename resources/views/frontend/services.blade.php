@@ -51,8 +51,8 @@
 
                             <div class="ser-text-box">
                                 <h4>{{ $service->title ?? ' ' }}</h4>
-                                {!! $service->description ?? ' ' !!}
-                                <a href="#.{{ $service->slug }}">Read More</a>
+                                {{-- {!! $service->description ?? ' ' !!} --}}
+                                <a href="{{ route('view.service', $service->slug) }}">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -63,6 +63,8 @@
     @php
         $consultation = getSiteContent('consultation');
     @endphp
+
+
     <section class="cta-sec">
         <div class="container">
             <div class="row">
