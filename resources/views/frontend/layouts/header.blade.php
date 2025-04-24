@@ -76,7 +76,7 @@
                                             href="{{ route('about.us') }}">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ Route::is('services') ? 'active' : '' }}"
+                                        <a class="nav-link {{ Route::is(['services','view.service']) ? 'active' : '' }}"
                                             href="{{ route('services') }}">Services</a>
                                     </li>
                                     <li class="nav-item">

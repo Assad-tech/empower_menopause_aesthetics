@@ -34,7 +34,7 @@
                                 href="{{ route('about.us') }}">About</a>
                         </li>
                         <li>
-                            <a class="nav-link {{ Route::is('services') ? 'footer_active' : '' }}"
+                            <a class="nav-link {{ Route::is(['services', 'view.service']) ? 'footer_active' : '' }}"
                                 href="{{ route('services') }}">Services</a>
                         </li>
                         <li>
