@@ -10,7 +10,7 @@
 <header>
     <div class="container emp-header-top">
         <div class="row emp-header-top-row">
-            <div class="col-md-5 logo-col">
+            <div class="col-md-4 logo-col">
                 <a href="{{ route('home') }}">
                     @if ($logo)
                         <img src="{{ asset('front/assets/images/' . $logo->logo) }}" alt="">
@@ -19,7 +19,7 @@
                     @endif
                 </a>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-3 h-icon-col">
                         <div class="h-icon">
@@ -37,7 +37,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-6 h-icon-col">
+                    <div class="col-md-5 ml-1 h-icon-col">
                         <div class="h-icon">
                             <span><i class="fa-solid fa-envelope"></i></span>
                         </div>
@@ -52,8 +52,14 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 contact-btn">
-                        <a class="dark-btn" href="#">Chat Now</a>
+                    <div class="col-md-4 contact-btn text-end">
+                        <a class="chatNow dark-btn btn-sm rounded-0" href="#">Chat Now</a>
+                        @auth
+                            <a class="btn btn-primary btn-sm m-2" href="{{ route('user.home') }}">Dashboard</a>
+                            <a class="btn btn-danger btn-sm" href="{{ route('user.logout') }}">Logout</a>
+                        @else
+                            <a class="dark-btn rounded-0 chatNow btn-sm mx-1" href="{{ route('user.login') }}">Login</a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -76,7 +82,7 @@
                                             href="{{ route('about.us') }}">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ Route::is(['services','view.service']) ? 'active' : '' }}"
+                                        <a class="nav-link {{ Route::is(['services', 'view.service']) ? 'active' : '' }}"
                                             href="{{ route('services') }}">Services</a>
                                     </li>
                                     <li class="nav-item">

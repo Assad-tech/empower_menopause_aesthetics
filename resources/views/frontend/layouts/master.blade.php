@@ -47,8 +47,12 @@
 
     <!-- footer css  -->
     <style>
-        .footer_active{
+        .footer_active {
             color: #000 !important;
+        }
+
+        .chatNow {
+            padding: 3px 10px !important;
         }
     </style>
 </head>

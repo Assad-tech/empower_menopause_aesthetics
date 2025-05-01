@@ -59,21 +59,27 @@
                                     <p class="text-white mb-0 small">{{ $data->discount_percentage }}%</p>
                                 </div>
                             </div>
-
-                            <img src="{{ asset('front/assets/images/products/' . $data->image) }}" class="card-img-top"
-                                alt="{{ $data->name }}" />
+                            <a href="{{ route('view.product', $data->slug) }}">
+                                <img src="{{ asset('front/assets/images/products/' . $data->image) }}" class="card-img-top"
+                                    alt="{{ $data->name }}" />
+                            </a>
 
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <p class="small"><a href="#!"
-                                            class="text-muted">{{ $data->category->name ?? 'Uncategorized' }}</a></p>
+                                    <a href="{{ route('view.product', $data->slug) }}">
+                                        <p class="small text-muted">
+                                            {{ $data->category->name ?? 'Uncategorized' }}
+                                        </p>
+                                    </a>
                                     <p class="small text-danger">
                                         <s>${{ number_format($data->price, 2) }}</s>
                                     </p>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">{{ $data->name }}</h5>
+                                    <a href="{{ route('view.product', $data->slug) }}">
+                                        <h5 class="mb-0">{{ $data->name }}</h5>
+                                    </a>
                                     <h5 class="text-dark mb-0">${{ number_format($discountedPrice, 2) }}</h5>
                                 </div>
 

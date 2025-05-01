@@ -8,6 +8,8 @@ use App\Models\AboutOurClient;
 use App\Models\AboutUs;
 use App\Models\AboutUsStats;
 use App\Models\Banner;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\Home;
@@ -17,7 +19,10 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -55,7 +60,8 @@ class HomeController extends Controller
     }
 
     // view Service
-    public function viewService($slug){
+    public function viewService($slug)
+    {
         $service = Service::where('slug', $slug)->first();
         // return $service;
         $testimonials = Testimonial::where('status', 1)->get();
@@ -88,6 +94,15 @@ class HomeController extends Controller
         return view('frontend.products', compact('testimonials', 'products', 'banner'));
     }
 
+    // view Product
+    public function viewProduct($slug)
+    {
+        $product = Product::with('category')->where('slug', $slug)->first();
+        $testimonials = Testimonial::where('status', 1)->get();
+        $banner = Banner::where('page', 'product')->first();
+        // dd($product);
+        return view('frontend.viewProduct', compact('product', 'testimonials', 'banner'));
+    }
     // faqs
     public function faqs()
     {
@@ -147,5 +162,93 @@ class HomeController extends Controller
         $email->save();
         toastr()->success('Email saved successfully.!');
         return redirect()->route('home');
+    }
+
+
+    // _______________ Product Carts Methods _________________
+
+    
+    public function addToCart($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            toastr()->error('Product not found!');
+            return redirect()->back();
+        }
+
+        if (!Auth::check()) {
+            toastr()->error('You must be logged in to add to cart.');
+            return redirect()->back();
+        }
+
+        // Check if product is in stock
+        if ($product->stock < 1) {
+            toastr()->error('Product is out of stock.');
+            return redirect()->back();
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = Auth::user();
+
+            // Find or create the cart for this user
+            $cart = Cart::firstOrCreate([
+                'user_id' => $user->id,
+            ]);
+
+            // Check if product already exists in cart
+            $cartItem = CartItem::where('cart_id', $cart->id)
+                ->where('product_id', $product->id)
+                ->first();
+
+            if ($cartItem) {
+                // Update quantity if exists
+                $cartItem->increment('quantity', 1);
+            } else {
+                // Create new cart item
+                CartItem::create([
+                    'cart_id' => $cart->id,
+                    'product_id' => $product->id,
+                    'quantity' => 1
+                ]);
+            }
+
+            // Decrease stock by 1
+            $product->decrement('stock', 1);
+
+            DB::commit();
+
+            toastr()->success('Product added to cart!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            toastr()->error('Failed to add product to cart.');
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function updateCart(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    public function removeCart(Request $request)
+    {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+
+            session()->flash('success', 'Product removed successfully');
+        }
     }
 }

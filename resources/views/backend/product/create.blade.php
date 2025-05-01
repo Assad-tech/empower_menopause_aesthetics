@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
                                         {{-- Description --}}
-                                        {{-- <div class="col-sm-12">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <h4>Description</h4>
                                                 <div id="summernote-description" data-toggle="summernote"
@@ -52,7 +52,7 @@
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         {{-- Image --}}
                                         <div class="col-sm-12">
                                             <div class="form-group">

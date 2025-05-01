@@ -33,6 +33,7 @@ Route::middleware('guest:web')->group(function () {
         Route::get('/login', 'index')->name('user.login');
         Route::post('/login-post', 'login')->name('user.login.submit');
         Route::get('/register', 'register')->name('user.register');
+        Route::post('/register-post', 'store')->name('user.register.submit');
     });
 });
 
@@ -207,6 +208,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/services', 'services')->name('services');
     Route::get('/services/view/{slug}', 'viewService')->name('view.service');
     Route::get('/products', 'products')->name('products');
+    Route::get('/products/view/{slug}', 'viewProduct')->name('view.product');
+    Route::get('/add-to-cart/{id}', 'addToCart')->name('add.to.cart');
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/contact-us', 'contactUs')->name('contact.us');
     Route::post('/contact-us/store', 'store')->name('contact.store');
