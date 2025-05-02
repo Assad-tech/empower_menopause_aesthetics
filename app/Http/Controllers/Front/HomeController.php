@@ -167,10 +167,31 @@ class HomeController extends Controller
 
     // _______________ Product Carts Methods _________________
 
-    
-    public function addToCart($id)
+    // view Cart
+    public function viewCart()
     {
-        $product = Product::find($id);
+        if (Auth::check()) {
+            $testimonials = Testimonial::where('status', 1)->get();
+            $banner = Banner::where('page', 'product')->first();
+
+            $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+
+
+
+            return view('frontend.viewCart', compact('cart', 'testimonials', 'banner'));
+        }
+        toastr()->error('You must be logged in to view cart.');
+        return redirect()->back();
+    }
+
+    public function addToCart(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $product = Product::find($request->product_id);
 
         if (!$product) {
             toastr()->error('Product not found!');
@@ -182,40 +203,43 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        // Check if product is in stock
-        if ($product->stock < 1) {
-            toastr()->error('Product is out of stock.');
+        $quantity = $request->quantity;
+
+        // Check if sufficient stock is available
+        if ($product->stock < $quantity) {
+            toastr()->error('Not enough stock available.');
             return redirect()->back();
         }
 
         DB::beginTransaction();
+
         try {
             $user = Auth::user();
 
-            // Find or create the cart for this user
+            // Find or create the user's cart
             $cart = Cart::firstOrCreate([
                 'user_id' => $user->id,
             ]);
 
-            // Check if product already exists in cart
+            // Find if item already in cart
             $cartItem = CartItem::where('cart_id', $cart->id)
                 ->where('product_id', $product->id)
                 ->first();
 
             if ($cartItem) {
-                // Update quantity if exists
-                $cartItem->increment('quantity', 1);
+                // Update quantity
+                $cartItem->increment('quantity', $quantity);
             } else {
                 // Create new cart item
                 CartItem::create([
                     'cart_id' => $cart->id,
                     'product_id' => $product->id,
-                    'quantity' => 1
+                    'quantity' => $quantity,
                 ]);
             }
 
-            // Decrease stock by 1
-            $product->decrement('stock', 1);
+            // Decrease stock accordingly
+            $product->decrement('stock', $quantity);
 
             DB::commit();
 
@@ -229,26 +253,27 @@ class HomeController extends Controller
     }
 
 
-    public function updateCart(Request $request)
+
+    public function updateCart(Request $request, $id)
     {
-        if ($request->id && $request->quantity) {
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
+        $cartItem = CartItem::find($id);
+        if (!$cartItem) {
+            return response()->json(['error' => true, 'message' => 'Cart item not found.']);
         }
+
+        $cartItem->update(['quantity' => $request->quantity]);
+        return response()->json(['success' => true, 'message' => 'Quantity updated successfully.']);
     }
 
-    public function removeCart(Request $request)
+    public function removeCart($id)
     {
-        if ($request->id) {
-            $cart = session()->get('cart');
-            if (isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-
-            session()->flash('success', 'Product removed successfully');
+        $cartItem = CartItem::find($id);
+        if (!$cartItem) {
+            return response()->json(['error' => true, 'message' => 'Cart item not found.']);
         }
+
+        $cartItem->delete();
+        return response()->json(['success' => true,'message' => 'Cart item removed successfully.']);   
     }
+
 }

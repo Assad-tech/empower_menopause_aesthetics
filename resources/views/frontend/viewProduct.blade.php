@@ -3,6 +3,22 @@
 @push('custom_css')
     <style>
         /*****************globals*************/
+        .cartBtn {
+            background-color: #D0BEAD !important;
+            border: solid 2px #D0BEAD !important;
+            color: #fff;
+        }
+
+        .buyNowBtn {
+            border: solid 2px #D0BEAD !important;
+            color: #D0BEAD !important;
+        }
+
+        .buyNowBtn:hover {
+            background-color: #D0BEAD !important;
+            color: #fff !important;
+        }
+
         img.rounded {
             width: 70px !important;
             height: 70px !important;
@@ -236,36 +252,13 @@
 @section('content')
     <section class="hero-sec">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 banner-col-right" data-aos="fade-right" data-aos-offset="300"
-                    data-aos-easing="ease-in-sine">
-                    <h3>
-                        {{ $banner->greeting ?? 'Welcome to EMA' }}
-                    </h3>
-                    <h1>"{{ $banner->site_name ?? 'Products' }}"</h1>
-
-                    <p>
-                        {!! $banner->banner_description ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' !!}
-                    </p>
-                    <div class="banner-bnt">
-                        <div> <a class="dark-btn" href="{{ route('book.consultation') }}">Book a Consultation</a> </div>
-                        <div> <a class="light-btn" href="">Learn More</a> </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 banner-col-left" data-aos="fade-up" data-aos-duration="3000">
-                    <img src="{{ asset($banner->banner ? 'front/assets/images/banners/' . $banner->banner : 'front/assets/images/home-banner-img.png') }}"
-                        alt="">
-                </div>
-            </div>
+            <h3 class="text-center">Product Details</h3>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <h3 class="text-center">Product Details</h3>
             {{-- Product --}}
-            {{-- <div class="card"> --}}
             <div class="container-fliud">
                 <div class="wrapper row" data-aos="zoom-in-up">
                     <div class="preview col-md-6">
@@ -325,26 +318,83 @@
                             </h4>
                         @endif
 
-                        <div class="d-flex justify-content-between text-uppercase">
-                            {{-- <form action="{{ route('add.to.cart', $product->id) }}" method="post">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input  type="submit" class="btn btn-warning rounded-0 text-white" value="Add to Cart">
-                            </form> --}}
-                            <a href="{{ route('add.to.cart', $product->id) }}"
-                                class="btn btn-warning rounded-0 text-white">
-                                <h6 class="mt-2">add to cart</h6>
-                            </a>
-                            <a href="#" class="btn btn-warning rounded-0 text-white">
-                                <h6 class="mt-2">
-                                    Stock: <span class="text-dark">{{ $product->stock }}</span>
-                                </h6>
-                            </a>
+                        <div class="row text-uppercase">
+                            <!-- Left Column -->
+                            <div class="col-md-12">
+                                @auth
+                                    <!-- Quantity and Stock Row -->
+                                    <div class="d-flex align-items-center gap-3 mb-2">
+                                        <div class="rounded-0 pr-3">
+                                            <strong>Stock:</strong> <span class="text-dark">{{ $product->stock }}</span>
+                                        </div>
+                                        <div class="input-group" style="max-width: 200px;">
+                                            <button class="btn btn-outline-secondary" type="button" id="decreaseQty">-</button>
+                                            <input type="number" name="quantity" id="quantity"
+                                                class="form-control text-center" value="1" min="1"
+                                                max="{{ $product->stock }}">
+                                            <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Buttons Row -->
+                                    <div class="d-flex gap-2">
+                                        <form action="{{ route('add.to.cart') }}" method="POST" class="w-100">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="quantity" id="cartQuantity" value="1">
+                                            <button type="submit"
+                                                class="text-uppercase btn cartBtn btn-warning rounded-0 text-white w-100">Add to
+                                                Cart</button>
+                                        </form>
+
+                                        <form action="#" method="POST" class="w-100">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="quantity" id="buyNowQuantity" value="1">
+                                            <button type="submit"
+                                                class="text-uppercase btn buyNowBtn rounded-0 text-white w-100">Buy
+                                                Now</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <!-- Quantity and Stock Row -->
+                                    <div class="d-flex align-items-center gap-3 mb-2">
+                                        <div class=" rounded-0 pr-3">
+                                            <strong>Stock:</strong> <span class="text-dark">{{ $product->stock }}</span>
+                                        </div>
+                                        <div class="input-group" style="max-width: 200px;">
+                                            <button class="btn btn-outline-secondary" type="button" id="decreaseQty">-</button>
+                                            <input type="number" id="quantity" class="form-control text-center" value="1"
+                                                min="1" max="{{ $product->stock }}">
+                                            <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Guest Buttons -->
+                                    <div class="d-flex gap-2">
+                                        <button type="button" class="text-uppercase btn cartBtn rounded-0 text-white w-50"
+                                            data-bs-toggle="modal" data-bs-target="#loginModal">
+                                            Add to Cart
+                                        </button>
+
+                                        <button type="button" class="text-uppercase btn buyNowBtn rounded-0 text-white w-50"
+                                            data-bs-toggle="modal" data-bs-target="#loginModal">
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                @endauth
+                            </div>
+
+                            <!-- Right column: Stock Info -->
+                            {{-- <div class="col-md-4 d-flex align-items-end">
+                                <div class="btn btn-info rounded-0 w-100 text-white text-center">
+                                    <span>Stock:</span> <strong class="text-dark">{{ $product->stock }}</strong>
+                                </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- </div> --}}
         </div>
     </section>
     @php
@@ -356,7 +406,8 @@
                 <div class="col-md-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <h2>{{ $consultation->consultation ?? ' Appointment Consultation' }}</h2>
                 </div>
-                <div class="col-md-6 cta-r-col" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <div class="col-md-6 cta-r-col" data-aos="fade-left" data-aos-offset="300"
+                    data-aos-easing="ease-in-sine">
                     <div class="banner-bnt">
                         <div> <a class="dark-btn" href="{{ route('services') }}">See Our Service</a> </div>
                         <div> <a class="light-btn" href="{{ route('book.consultation') }}">Book a Consultation</a> </div>
@@ -421,3 +472,31 @@
     </section>
 
 @endsection
+
+@push('custom_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const qtyInput = document.getElementById('quantity');
+            const buyNowQtyInput = document.getElementById('buyNowQuantity');
+
+            const incBtn = document.getElementById('increaseQty');
+            const decBtn = document.getElementById('decreaseQty');
+
+            if (incBtn && decBtn && qtyInput) {
+                incBtn.addEventListener('click', () => {
+                    qtyInput.stepUp();
+                    if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                });
+
+                decBtn.addEventListener('click', () => {
+                    qtyInput.stepDown();
+                    if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                });
+
+                qtyInput.addEventListener('input', () => {
+                    if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                });
+            }
+        });
+    </script>
+@endpush

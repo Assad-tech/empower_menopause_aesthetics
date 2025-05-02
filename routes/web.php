@@ -49,6 +49,8 @@ Route::middleware('guest:admin')->prefix('admin')->group(function () {
 Route::middleware('auth:web')->group(function () {
     Route::controller(UserDashboardController::class)->group(function () {
         Route::get('/home', 'index')->name('user.home');
+        Route::get('/profile', 'profile')->name('user.profile');
+        Route::get('/checkout', 'checkout')->name('checkout');
     });
     Route::controller(AuthController::class)->group(function () {
         Route::get('/logout', 'logout')->name('user.logout');
@@ -209,7 +211,12 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/services/view/{slug}', 'viewService')->name('view.service');
     Route::get('/products', 'products')->name('products');
     Route::get('/products/view/{slug}', 'viewProduct')->name('view.product');
-    Route::get('/add-to-cart/{id}', 'addToCart')->name('add.to.cart');
+    
+    Route::get('/cart/view-cart/', 'viewCart')->name('view.cart');
+    Route::post('cart/add-to-cart', 'addToCart')->name('add.to.cart');
+    Route::patch('/cart/update/{id}', 'updateCart')->name('cart.update');
+    Route::delete('/cart/remove/{id}', 'removeCart')->name('cart.remove');
+
     Route::get('/faqs', 'faqs')->name('faqs');
     Route::get('/contact-us', 'contactUs')->name('contact.us');
     Route::post('/contact-us/store', 'store')->name('contact.store');

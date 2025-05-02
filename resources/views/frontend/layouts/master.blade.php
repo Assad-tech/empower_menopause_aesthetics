@@ -40,8 +40,6 @@
     <!-- animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('front/assets/style/jquery.fancybox.min.css') }}">
-
     <!-- custom css start -->
     @stack('custom_css')
 
@@ -53,6 +51,9 @@
 
         .chatNow {
             padding: 3px 10px !important;
+            background-color: #959394;
+            border: solid 2px #959394 !important;
+            color: #fff;
         }
     </style>
 </head>
@@ -106,6 +107,7 @@
 
     <!-- custom js start -->
     @stack('custom_js')
+
 
 </body>
 
