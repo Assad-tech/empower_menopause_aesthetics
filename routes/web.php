@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FAQsController;
 use App\Http\Controllers\Admin\FeaturedController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SiteContentController;
@@ -51,6 +52,9 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/home', 'index')->name('user.home');
         Route::get('/profile', 'profile')->name('user.profile');
         Route::get('/checkout', 'checkout')->name('checkout');
+        Route::post('/shipping-details/update', 'updateShipping')->name('user.update.shipping-details');
+        Route::get('proceed-to-pay/{id}', 'proceedToPay')->name('user.proceed.to.pay');
+        Route::get('/orders', 'orders')->name('user.orders');
     });
     Route::controller(AuthController::class)->group(function () {
         Route::get('/logout', 'logout')->name('user.logout');
@@ -82,7 +86,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         Route::post('/update/testimonials/{id}', 'updateTestimonial')->name('admin.update.testimonials');
         Route::get('/delete/testimonials/{id}', 'deleteTestimonial')->name('admin.delete.testimonials');
     });
-
     //Site Content Routes
     Route::controller(SiteContentController::class)->group(function () {
         Route::get('/site-content', 'index')->name('admin.site-content');
@@ -197,6 +200,12 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         // Contact Us
         Route::get('/contact-us', 'index')->name('admin.manage.contact-us');
         Route::get('/contact-us/delete/{id}', 'destroy')->name('admin.delete.contact-us');
+    });
+
+    // Orders Routes
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/orders', 'index')->name('admin.manage.orders');
+        Route::get('/orders/view/{id}', 'show')->name('admin.view.order');
     });
 });
 

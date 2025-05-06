@@ -186,6 +186,7 @@ class HomeController extends Controller
 
     public function addToCart(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
@@ -249,7 +250,11 @@ class HomeController extends Controller
             toastr()->error('Failed to add product to cart.');
         }
 
-        return redirect()->back();
+        if($request->action == 'add_to_cart'){
+            return redirect()->back();            
+        }elseif($request->action == 'buy_now'){
+            return redirect()->route('checkout');
+        }
     }
 
 

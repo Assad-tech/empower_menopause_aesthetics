@@ -327,12 +327,11 @@
                                         <div class="rounded-0 pr-3">
                                             <strong>Stock:</strong> <span class="text-dark">{{ $product->stock }}</span>
                                         </div>
-                                        <div class="input-group" style="max-width: 200px;">
-                                            <button class="btn btn-outline-secondary" type="button" id="decreaseQty">-</button>
-                                            <input type="number" name="quantity" id="quantity"
-                                                class="form-control text-center" value="1" min="1"
-                                                max="{{ $product->stock }}">
-                                            <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                                        <div class="input-group quantity-wrapper" style="max-width: 200px;" data-stock="{{ $product->stock }}">
+                                            <button class="btn btn-outline-secondary decreaseQty" type="button">-</button>
+                                            <input type="number" class="quantityInput form-control text-center" value="1"
+                                                min="1" max="{{ $product->stock }}">
+                                            <button class="btn btn-outline-secondary increaseQty" type="button">+</button>
                                         </div>
                                     </div>
 
@@ -342,15 +341,17 @@
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input type="hidden" name="quantity" id="cartQuantity" value="1">
+                                            <input type="hidden" name="action" value="add_to_cart">
                                             <button type="submit"
                                                 class="text-uppercase btn cartBtn btn-warning rounded-0 text-white w-100">Add to
                                                 Cart</button>
                                         </form>
 
-                                        <form action="#" method="POST" class="w-100">
+                                        <form action="{{ route('add.to.cart') }}" method="POST" class="w-100">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input type="hidden" name="quantity" id="buyNowQuantity" value="1">
+                                            <input type="hidden" name="action" value="buy_now">
                                             <button type="submit"
                                                 class="text-uppercase btn buyNowBtn rounded-0 text-white w-100">Buy
                                                 Now</button>
@@ -476,27 +477,31 @@
 @push('custom_js')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const qtyInput = document.getElementById('quantity');
-            const buyNowQtyInput = document.getElementById('buyNowQuantity');
+            document.querySelectorAll('.quantity-wrapper').forEach(wrapper => {
+                const qtyInput = wrapper.querySelector('.quantityInput');
+                const incBtn = wrapper.querySelector('.increaseQty');
+                const decBtn = wrapper.querySelector('.decreaseQty');
 
-            const incBtn = document.getElementById('increaseQty');
-            const decBtn = document.getElementById('decreaseQty');
+                const buyNowQtyInput = document.getElementById('buyNowQuantity');
+                const cartQtyInput = document.getElementById('cartQuantity');
 
-            if (incBtn && decBtn && qtyInput) {
-                incBtn.addEventListener('click', () => {
+                incBtn?.addEventListener('click', () => {
                     qtyInput.stepUp();
                     if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                    if (cartQtyInput) cartQtyInput.value = qtyInput.value;
                 });
 
-                decBtn.addEventListener('click', () => {
+                decBtn?.addEventListener('click', () => {
                     qtyInput.stepDown();
                     if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                    if (cartQtyInput) cartQtyInput.value = qtyInput.value;
                 });
 
-                qtyInput.addEventListener('input', () => {
+                qtyInput?.addEventListener('input', () => {
                     if (buyNowQtyInput) buyNowQtyInput.value = qtyInput.value;
+                    if (cartQtyInput) cartQtyInput.value = qtyInput.value;
                 });
-            }
+            });
         });
     </script>
 @endpush

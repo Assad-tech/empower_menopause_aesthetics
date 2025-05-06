@@ -273,7 +273,7 @@
                     .then(data => {
                         if (data.success) {
                             toastr.success(data.message || "Updated successfully!");
-                            setTimeout(() => location.reload(), 1200); // ✅ Add reload here too if needed
+                            setTimeout(() => location.reload(), 1200);
                         } else {
                             toastr.error(data.message || "Something went wrong.");
                         }

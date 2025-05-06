@@ -53,14 +53,32 @@
                         </div>
                     </div>
                     <div class="col-md-5 contact-btn text-end">
-                        <a class="chatNow dark-btn btn-sm rounded-0" href="#">Chat Now</a>
+                        <a class="chatNow dark-btn btn-sm rounded-0" href="#">
+                            <i class="fa fa-comment" aria-hidden="true"></i> Chat Now</a>
                         @auth
                             <a class="chatNow rounded-0 dark-btn btn-sm m-2" href="{{ route('view.cart') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 Cart
                             </a>
-                            <a class="chatNow rounded-0 dark-btn btn-sm m-2" href="{{ route('user.profile') }}">Profile</a>
-                            <a class="chatNow rounded-0 dark-btn btn-sm" href="{{ route('user.logout') }}">Logout</a>
+                            {{-- <a class="chatNow rounded-0 dark-btn btn-sm" href="{{ route('user.logout') }}">Logout</a> --}}
+                            <div class="dropdown">
+                                <button class="chatNow rounded-0 dark-btn btn-sm m-2 dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item rounded-0"
+                                        href="{{ route('user.profile') }}">
+                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                    </a>
+                                    <a class="dropdown-item rounded-0" href="{{ route('user.orders') }}">
+                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i> My Orders
+                                    </a>
+                                    <a class="dropdown-item rounded-0" href="{{ route('user.logout') }}">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                                </div>
+                            </div>
                         @else
                             <!-- Button to Open Modal -->
                             <button class="dark-btn rounded-0 chatNow btn-sm mx-1 border-0" data-bs-toggle="modal"

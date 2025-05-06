@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <a href="{{ route('view.product', $data->slug) }}">
-                                <img src="{{ asset('front/assets/images/products/' . $data->image) }}" class="card-img-top"
+                                <img src="{{ asset('front/assets/images/products/' . $data->image) }}" height="275" class="card-img-top"
                                     alt="{{ $data->name }}" />
                             </a>
 

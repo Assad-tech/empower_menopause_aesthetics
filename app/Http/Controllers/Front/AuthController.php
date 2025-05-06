@@ -91,7 +91,6 @@ class AuthController extends Controller
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
                 'role' => 'user',
-                'status' => 1,
             ]);
 
             Auth::guard('web')->login($user);

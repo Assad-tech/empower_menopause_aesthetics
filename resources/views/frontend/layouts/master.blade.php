@@ -55,6 +55,20 @@
             border: solid 2px #959394 !important;
             color: #fff;
         }
+
+        /* header dropdown css */
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown>.dropdown-toggle:active {
+            /*Without this, clicking will make it sticky*/
+            pointer-events: none;
+        }
+
+        .dropdown-menu.rounded-0 {
+            margin-left: 7px !important;
+        }
     </style>
 </head>
 
