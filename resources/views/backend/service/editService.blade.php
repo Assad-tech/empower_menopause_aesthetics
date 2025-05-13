@@ -86,6 +86,28 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Location)
+                                        </h4>
+                                        <input type="text" value="{!! old('booking_location', $service->booking_location) !!}" name="booking_location" class="form-control " placeholder="Direct Booking Link (Location)">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Practitioner & Location)
+                                        </h4>
+                                        <input type="text" value="{!! old('booking_practitioner', $service->booking_practitioner) !!}" name="booking_practitioner" class="form-control " placeholder="Direct Booking Link (Practitioner & Location)">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <!-- Image -->
                                 <div class="col-sm-6">
                                     <div class="form-group">

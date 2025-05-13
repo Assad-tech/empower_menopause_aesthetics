@@ -119,7 +119,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
         // Route::get('/about-us/stats/edit/{id}', 'editStats')->name('admin.about-us.edit.stats');
         // Route::post('/about-us/stats/update/{id}', 'updateStats')->name('admin.about-us.update.stats');
         // Route::get('/about-us/stats/delete/{id}', 'deleteStats')->name('admin.about-us.delete.stats');
-        // Company Logos and links 
+        // Company Logos and links
         // Route::get('/about-us/client/create', 'createClient')->name('admin.about-us.create.client');
         // Route::post('/about-us/client/store', 'storeClient')->name('admin.about-us.store.client');
         // Route::get('/about-us/client/edit/{id}', 'editClient')->name('admin.about-us.edit.client');
@@ -211,5 +211,6 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/contact-us', 'contactUs')->name('contact.us');
     Route::post('/contact-us/store', 'store')->name('contact.store');
     Route::get('/book-a-consultation', 'bookAConsultation')->name('book.consultation');
+    Route::get('/book-a-consultation-vew/{type}', 'bookAConsultationView')->name('book.consultation.view');
     Route::post('/emails/store', 'storeEmails')->name('emails.store');
 });

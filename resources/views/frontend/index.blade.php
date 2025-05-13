@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-left">
                     <div class="about-content">
-                        <h3 class="sub-h">{{ $about->sub_heading ?? 'About Us' }}</h3>                        
+                        <h3 class="sub-h">{{ $about->sub_heading ?? 'About Us' }}</h3>
                         {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                         <button>for more details</button>
@@ -73,7 +73,7 @@
                 @foreach ($services as $service)
                     <div class="col-md-4 services-img-1-col" data-aos="zoom-in-up">
                         <div class="services-img-1"
-                            style="background-image: url('{{ asset('front/assets/images/featured/' . $service->image) }}'); background-size: cover; background-repeat: no-repeat;">
+                            style="background-image: url('{{ asset('front/assets/images/featured/' . ($service->image ?? 'default-image.png')) }}'); background-size: cover; background-repeat: no-repeat;">
 
                             <div class="ser-text-box">
                                 <h4>{{ $service->title ?? ' ' }}</h4>

@@ -61,6 +61,31 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Location)
+                                        </h4>
+                                        <input type="text" name="booking_location" class="form-control " placeholder="Direct Booking Link (Location)">
+                                        @error('booking_location')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Practitioner & Location)
+                                        </h4>
+                                        <input type="text" name="booking_practitioner" class="form-control " placeholder="Direct Booking Link (Practitioner & Location)">
+                                        @error('booking_practitioner')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+
+
                                 {{-- Image --}}
                                 <div class="col-sm-6">
                                     <div class="form-group">

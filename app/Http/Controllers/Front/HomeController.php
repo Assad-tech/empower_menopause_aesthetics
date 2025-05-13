@@ -27,7 +27,7 @@ class HomeController extends Controller
         // $content = Home::first();
         $content = Banner::where('page', 'home')->first();
         $testimonials = Testimonial::where('status', 1)->get();
-        $services = Service::where('status', 1)->get();
+        $services = Service::where('status', 1)->get()->take(3);
         $faqs = FAQ::where('status', 1)->get();
         $about = AboutUs::first();
         // dd($content);
@@ -131,6 +131,17 @@ class HomeController extends Controller
     public function bookAConsultation()
     {
         return view('frontend.book-a-consultation');
+    }
+    public function bookAConsultationView($type)
+    {
+        if($type == 'practitioner'){
+            $heading = 'Melissa Howcroft (Practitioner)';
+            $link = 'https://www.halaxy.com/book/widget/appointment/nurse/ms-melissa-howcroft/1709895/1311467';
+        }else{
+            $heading = 'Empower Menopause & Aesthetics (Clinic)';
+            $link = 'https://www.halaxy.com/book/widget/empower-menopause-aesthetics/location/1311467';
+        }
+        return view('frontend.book-a-consultation-view', compact('link','heading'));
     }
 
     // store emails

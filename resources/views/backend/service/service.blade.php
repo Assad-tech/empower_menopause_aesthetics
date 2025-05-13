@@ -83,7 +83,7 @@
                 </div><!-- /.card -->
             </div><!-- /.page-section -->
         </div><!-- /.page-inner --> --}}
-        
+
         {{-- Services --}}
         <!-- .page-inner -->
         <div class="page-inner">
@@ -124,8 +124,8 @@
                                         <td> {{ $i++ }} </td>
                                         <td>
                                             <img class="img rounded" width="100"
-                                                src="{{ asset('front/assets/images/featured/' . $data->image) }}"
-                                                alt="{{ $data->site_name }}">
+                                            src="{{ asset('front/assets/images/featured/' . ($data->image ?? 'default-image.png')) }}"
+                                            alt="{{ $data->site_name }}">
                                         </td>
                                         <td> {{ $data->title ?? 'N/A' }}</td>
                                         {{-- <td>

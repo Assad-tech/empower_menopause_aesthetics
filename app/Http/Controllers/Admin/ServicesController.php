@@ -28,6 +28,8 @@ class ServicesController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'booking_location' => 'required|url',
+            'booking_practitioner' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             // 'icon' => 'nullable|string',
         ]);
@@ -56,6 +58,8 @@ class ServicesController extends Controller
         $newService->title = $request->title;
         // $newService->icon = $request->icon;
         $newService->description = $request->description??"null";
+        $newService->booking_location = $request->booking_location??"null";
+        $newService->booking_practitioner = $request->booking_practitioner??"null";
         $newService->status = 1;
         $newService->save();
 
@@ -75,6 +79,8 @@ class ServicesController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'booking_location' => 'required|url',
+            'booking_practitioner' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             // 'icon' => 'nullable|string',
         ]);
@@ -108,6 +114,8 @@ class ServicesController extends Controller
         $updateService->title = $request->title;
         // $updateService->icon = $request->icon;
         $updateService->description = $request->description??"null";
+        $updateService->booking_location = $request->booking_location??"null";
+        $updateService->booking_practitioner = $request->booking_practitioner??"null";
         $updateService->status = $request->status;
 
         $updateService->save();
@@ -125,7 +133,7 @@ class ServicesController extends Controller
     }
 
     // __________ Service Banner _________
-    // Create new Service Banner 
+    // Create new Service Banner
     public function createBanner()
     {
         return view('backend.service.createBanner');

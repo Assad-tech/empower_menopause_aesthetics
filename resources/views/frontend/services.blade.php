@@ -45,9 +45,9 @@
             </div>
             <div class="row">
                 @foreach ($services as $service)
-                    <div class="col-md-4 services-img-1-col" data-aos="zoom-in-up">
-                        <div class="services-img-1"
-                            style="background-image: url('{{ asset('front/assets/images/featured/' . $service->image) }}'); background-size: cover; background-repeat: no-repeat;">
+                    <div class="col-md-4 services-img-1-col mt-3" data-aos="zoom-in-up">
+                        <div class="services-img-1 w-100 "
+                            style="background-image: url('{{ asset('front/assets/images/featured/' . ($service->image ?? 'default-image.png')) }}'); background-size: cover; background-repeat: no-repeat;">
 
                             <div class="ser-text-box">
                                 <h4>{{ $service->title ?? ' ' }}</h4>
