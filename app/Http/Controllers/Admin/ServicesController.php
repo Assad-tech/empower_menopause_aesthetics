@@ -27,6 +27,13 @@ class ServicesController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => 'required|string',
+            'service_number' => 'required|string',
+            'category' => 'required|string',
+            'type' => 'required|string',
+            'duration' => 'required|string',
+            'appt_location_type' => 'required|string',
+            'amount' => 'required',
+            'tax' => 'required',
             'description' => 'required|string',
             'booking_location' => 'required|url',
             'booking_practitioner' => 'required|url',
@@ -56,10 +63,16 @@ class ServicesController extends Controller
         }
 
         $newService->title = $request->title;
-        // $newService->icon = $request->icon;
         $newService->description = $request->description??"null";
         $newService->booking_location = $request->booking_location??"null";
         $newService->booking_practitioner = $request->booking_practitioner??"null";
+        $newService->service_number = $request->service_number??"null";
+        $newService->category = $request->category??"null";
+        $newService->type = $request->type??"null";
+        $newService->duration = $request->duration??"null";
+        $newService->appt_location_type = $request->appt_location_type??"null";
+        $newService->amount = $request->amount??"null";
+        $newService->tax = $request->tax??"null";
         $newService->status = 1;
         $newService->save();
 
@@ -78,6 +91,13 @@ class ServicesController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => 'required|string',
+            'service_number' => 'required|string',
+            'category' => 'required|string',
+            'type' => 'required|string',
+            'duration' => 'required|string',
+            'appt_location_type' => 'required|string',
+            'amount' => 'required',
+            'tax' => 'required',
             'description' => 'required|string',
             'booking_location' => 'required|url',
             'booking_practitioner' => 'required|url',
@@ -116,6 +136,13 @@ class ServicesController extends Controller
         $updateService->description = $request->description??"null";
         $updateService->booking_location = $request->booking_location??"null";
         $updateService->booking_practitioner = $request->booking_practitioner??"null";
+        $updateService->service_number = $request->service_number??"null";
+        $updateService->category = $request->category??"null";
+        $updateService->type = $request->type??"null";
+        $updateService->duration = $request->duration??"null";
+        $updateService->appt_location_type = $request->appt_location_type??"null";
+        $updateService->amount = $request->amount??"null";
+        $updateService->tax = $request->tax??"null";
         $updateService->status = $request->status;
 
         $updateService->save();

@@ -27,6 +27,19 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+
+                                {{-- Service Number --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Service Number</h4>
+                                        <input type="text" name="service_number" class="form-control" placeholder="Enter Service Number"
+                                            value="{{ old('service_number', $service->service_number ?? '') }}">
+                                        @error('service_number')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <!-- Title -->
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -38,8 +51,91 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <!-- Status -->
 
+                                {{-- Category --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Category</h4>
+                                            <select name="category" id="" class="form-control" required>
+                                                <option value="" disabled selected>Select category</option>
+                                                <option @if($service->category == "Assess ment")  selected @endif value="Assess ment">Assess ment</option>
+                                                <option @if($service->category == "Training/Education")  selected @endif value="Training/Education">Training/Education</option>
+                                                <option @if($service->category == "Treatment")  selected @endif value="Treatment">Treatment</option>
+                                            </select>
+                                        @error('category')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Type --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Type</h4>
+                                        <select name="type" id="" class="form-control" required>
+                                            <option value="" disabled selected>Select Type</option>
+                                            <option @if($service->type == "Appointment")  selected @endif value="Appointment">Appointment</option>
+                                            <option @if($service->type == "Item")  selected @endif  value="Item">Item</option>
+                                        </select>
+                                        @error('type')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Duration --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Duration</h4>
+                                        <input type="text" name="duration" class="form-control" placeholder="Enter duration"
+                                            value="{{ old('duration', $service->duration ?? '') }}">
+                                        @error('duration')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Appt Location Type --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Appt Location Type</h4>
+                                        <select name="appt_location_type" id="" class="form-control" required>
+                                            <option value="" disabled selected>Select Appt Location Type</option>
+                                            <option @if($service->appt_location_type == "Halaxy Telehealth")  selected @endif value="Halaxy Telehealth">Halaxy Telehealth</option>
+                                            <option @if($service->appt_location_type == "Online consultation")  selected @endif value="Online consultation">Online consultation</option>
+                                            <option @if($service->appt_location_type == "In-clinic consultation")  selected @endif value="In-clinic consultation">In-clinic consultation</option>
+                                        </select>
+                                        @error('appt_location_type')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Amount --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Amount</h4>
+                                        <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                            value="{{ old('amount', $service->amount ?? '') }}">
+                                        @error('amount')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Tax --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Tax</h4>
+                                        <input type="number" name="tax" class="form-control" placeholder="Enter Tax"
+                                            value="{{ old('tax', $service->tax ?? '') }}">
+                                        @error('tax')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <h4>Status</h4>
@@ -57,6 +153,29 @@
                                     </div>
                                 </div>
 
+                                {{-- Direct Booking Link (Location) --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Location)
+                                        </h4>
+                                        <input type="text" value="{!! old('booking_location', $service->booking_location) !!}" name="booking_location" class="form-control " placeholder="Direct Booking Link (Location)">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Direct Booking Link (Practitioner & Location) --}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <h4>Direct Booking Link (Practitioner & Location)
+                                        </h4>
+                                        <input type="text" value="{!! old('booking_practitioner', $service->booking_practitioner) !!}" name="booking_practitioner" class="form-control " placeholder="Direct Booking Link (Practitioner & Location)">
+                                        @error('image')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Icon -->
                                 {{-- <div class="col-sm-6">
@@ -87,26 +206,7 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <h4>Direct Booking Link (Location)
-                                        </h4>
-                                        <input type="text" value="{!! old('booking_location', $service->booking_location) !!}" name="booking_location" class="form-control " placeholder="Direct Booking Link (Location)">
-                                        @error('image')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <h4>Direct Booking Link (Practitioner & Location)
-                                        </h4>
-                                        <input type="text" value="{!! old('booking_practitioner', $service->booking_practitioner) !!}" name="booking_practitioner" class="form-control " placeholder="Direct Booking Link (Practitioner & Location)">
-                                        @error('image')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+
 
                                 <!-- Image -->
                                 <div class="col-sm-6">

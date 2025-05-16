@@ -28,6 +28,7 @@ class FAQsController extends Controller
         $request->validate([
             'question' => 'required|string',
             'answer' => 'required|string',
+            'type' => 'required|string',
             // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
         ]);
 
@@ -55,6 +56,7 @@ class FAQsController extends Controller
         $newFAQ->question = $request->question;
         // $newFAQ->icon = $request->icon;
         $newFAQ->answer = $request->answer;
+        $newFAQ->type = $request->type;
         $newFAQ->status = 1;
 
         $newFAQ->save();
@@ -109,6 +111,8 @@ class FAQsController extends Controller
 
         $updateService->question = $request->question;
         $updateService->answer = $request->answer;
+        $updateService->type = $request->type;
+
 
         $updateService->save();
 
@@ -126,7 +130,7 @@ class FAQsController extends Controller
 
 
     // __________ FAQs Banner _________
-    // Create new FAQs Banner 
+    // Create new FAQs Banner
     public function createBanner()
     {
         return view('backend.faqs.createBanner');

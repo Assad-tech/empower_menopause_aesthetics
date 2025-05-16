@@ -28,7 +28,7 @@ class HomeController extends Controller
         $content = Banner::where('page', 'home')->first();
         $testimonials = Testimonial::where('status', 1)->get();
         $services = Service::where('status', 1)->get()->take(3);
-        $faqs = FAQ::where('status', 1)->get();
+        $faqs = FAQ::where('status', 1)->where('type','General Questions')->get();
         $about = AboutUs::first();
         // dd($content);
         return view('frontend.index', compact('content', 'testimonials', 'services', 'faqs', 'about'));
@@ -92,7 +92,9 @@ class HomeController extends Controller
     public function faqs()
     {
         $banner = Banner::where('page', 'faqs')->first();
-        $faqs = FAQ::where('status', 1)->get();
+        // $faqs = FAQ::where('status', 1)->get();
+        $faqs = Faq::where('status', 1)->get()->groupBy('type');
+
         return view('frontend.faqs', compact('banner', 'faqs'));
     }
 

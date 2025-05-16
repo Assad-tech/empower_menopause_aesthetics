@@ -27,7 +27,27 @@
                         <form action="{{ route('admin.store.faqs') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-12">
+
+                                <div class="col-sm-7">
+                                    {{-- Type --}}
+                                    <div class="form-group">
+                                        <h4>Type</h4>
+                                        <select name="type" class="form-control" id="" required>
+                                            <option value="" disabled selected>select type</option>
+                                            <option value="General Questions">General Questions</option>
+                                            <option value="Menopause & Hormonal Health">Menopause & Hormonal Health</option>
+                                            <option value="Aesthetic Services">Aesthetic Services</option>
+                                            <option value="Membership & Support">Membership & Support</option>
+                                            <option value="Payments & Policies">Payments & Policies</option>
+                                        </select>
+                                        @error('type')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-7">
                                     {{-- Question --}}
                                     <div class="form-group">
                                         <h4>Question</h4>

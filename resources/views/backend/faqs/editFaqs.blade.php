@@ -28,8 +28,27 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+
+
+                                <div class="col-sm-7">
+                                    {{-- Type --}}
+                                    <div class="form-group">
+                                        <h4>Type</h4>
+                                        <select name="type" class="form-control" id="" required>
+                                            <option value="" disabled selected>select type</option>
+                                            <option  @if($faq->type == "General Questions")  selected @endif value="General Questions">General Questions</option>
+                                            <option  @if($faq->type == "Menopause & Hormonal Health")  selected @endif value="Menopause & Hormonal Health">Menopause & Hormonal Health</option>
+                                            <option  @if($faq->type == "Aesthetic Services")  selected @endif value="Aesthetic Services">Aesthetic Services</option>
+                                            <option  @if($faq->type == "Membership & Support")  selected @endif value="Membership & Support">Membership & Support</option>
+                                            <option  @if($faq->type == "Payments & Policies")  selected @endif value="Payments & Policies">Payments & Policies</option>
+                                        </select>
+                                        @error('type')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <!-- Title -->
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <div class="form-group">
                                         <h4>Question</h4>
                                         <input type="text" name="question" class="form-control" placeholder="Enter Question"
