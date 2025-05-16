@@ -7,6 +7,26 @@
             height: 70px !important;
             border-radius: 50% !important;
         }
+
+         img.rounded {
+            width: 70px !important;
+            height: 70px !important;
+            border-radius: 50% !important;
+        }
+
+        .lead {
+            color: black !important;
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        .service-name{
+            color: #201f1e;
+        }
+
+        a:hover {
+            color: #d1935e;
+        }
     </style>
 @endpush
 @section('content')
@@ -71,17 +91,54 @@
             </div>
             <div class="row">
                 @foreach ($services as $service)
-                    <div class="col-md-4 services-img-1-col" data-aos="zoom-in-up">
+
+                <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 ">
+                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead mb-0">{{ $service->appt_location_type ?? '' }}</p>
+
+                        </div>
+                        <a href="{{ route('view.service', $service->slug) }}">
+
+                            <img height="250"
+                                src="{{ asset('front/assets/images/featured/' . ($service->image ?? 'default-image.png')) }}"
+                                class="card-img-top" alt="{{ $service->name }}" />
+                        </a>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <p class="small"><a href="#!"
+                                        class="text-muted">{{ $service->type ?? 'Uncategorized' }}</a></p>
+                                <p class=" text-danger">
+                                    <i style="font-size:17px" class="fa">&#xf017;</i>
+                                    {{ $service->duration }}
+                                </p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3">
+                                <a href="{{ route('view.service', $service->slug) }}">
+
+                                    <h5 class="mb-0 service-name">{{ $service->title }}</h5>
+                                </a>
+                                <h5 class="text-dark mb-0">
+                                    ${{ number_format($service->amount + $service->tax, 2) }}
+                                </h5>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                    {{-- <div class="col-md-4 services-img-1-col" data-aos="zoom-in-up">
                         <div class="services-img-1"
                             style="background-image: url('{{ asset('front/assets/images/featured/' . ($service->image ?? 'default-image.png')) }}'); background-size: cover; background-repeat: no-repeat;">
 
                             <div class="ser-text-box">
                                 <h4>{{ $service->title ?? ' ' }}</h4>
-                                {{-- {!! $service->description ?? ' ' !!} --}}
                                 <a href="{{ route('view.service', $service->slug) }}">Read More</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 @endforeach
             </div>
             <div class="ser-btn"> <a class="dark-btn" href="{{ route('services') }}">Discover Our Approach</a> </div>

@@ -58,7 +58,7 @@
                                         <h4>Category</h4>
                                             <select name="category" id="" class="form-control" required>
                                                 <option value="" disabled selected>Select category</option>
-                                                <option value="Assess ment">Assess ment</option>
+                                                <option value="Assessment">Assessment</option>
                                                 <option value="Training/Education">Training/Education</option>
                                                 <option value="Treatment">Treatment</option>
                                             </select>

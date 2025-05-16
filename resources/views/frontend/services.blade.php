@@ -15,6 +15,10 @@
         a:hover {
             color: #d1935e;
         }
+
+        .service-name{
+            color: #201f1e;
+        }
     </style>
 @endpush
 @section('content')
@@ -79,7 +83,7 @@
                                 <div class="d-flex justify-content-between mb-3">
                                     <a href="{{ route('view.service', $service->slug) }}">
 
-                                        <h5 class="mb-0">{{ $service->title }}</h5>
+                                        <h5 class="mb-0 service-name">{{ $service->title }}</h5>
                                     </a>
                                     <h5 class="text-dark mb-0">
                                         ${{ number_format($service->amount + $service->tax, 2) }}
