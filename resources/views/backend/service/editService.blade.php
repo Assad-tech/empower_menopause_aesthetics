@@ -58,7 +58,7 @@
                                         <h4>Category</h4>
                                             <select name="category" id="" class="form-control" required>
                                                 <option value="" disabled selected>Select category</option>
-                                                <option @if($service->category == "Assessment")  selected @endif value="Assessment">Assess ment</option>
+                                                <option @if($service->category == "Assessment")  selected @endif value="Assessment">Assessment</option>
                                                 <option @if($service->category == "Training/Education")  selected @endif value="Training/Education">Training/Education</option>
                                                 <option @if($service->category == "Treatment")  selected @endif value="Treatment">Treatment</option>
                                             </select>
