@@ -115,7 +115,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <h4>Amount</h4>
-                                        <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                        <input step="0.01" type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                             value="{{ old('amount', $service->amount ?? '') }}">
                                         @error('amount')
                                             <div class="text-danger">{{ $message }}</div>
@@ -127,7 +127,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <h4>Tax</h4>
-                                        <input type="number" name="tax" class="form-control" placeholder="Enter Tax"
+                                        <input step="0.01" type="number" name="tax" class="form-control" placeholder="Enter Tax"
                                             value="{{ old('tax', $service->tax ?? '') }}">
                                         @error('tax')
                                             <div class="text-danger">{{ $message }}</div>
