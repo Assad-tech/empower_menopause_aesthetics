@@ -58,7 +58,7 @@
                                         aria-labelledby="heading-{{ $data->id }}"
                                         data-bs-parent="#accordion-{{ Str::slug($type) }}">
                                         <div class="accordion-body">
-                                            {{ $data->answer }}
+                                            {!! $data->answer !!}
                                         </div>
                                     </div>
                                 </div>
