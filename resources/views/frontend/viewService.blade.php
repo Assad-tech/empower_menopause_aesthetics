@@ -40,8 +40,10 @@
 
 
                     <h5 class=" text-danger">
+                        @if($service->duration)
                         <i style="font-size:17px" class="fa">&#xf017;</i>
                         {{ $service->duration }}
+                        @endif
                     </h5>
 
                     <div style="margin-top: 20px;">

@@ -75,8 +75,10 @@
                                     <p class="small"><a href="#!"
                                             class="text-muted">{{ $service->type ?? 'Uncategorized' }}</a></p>
                                     <p class=" text-danger">
+                                        @if($service->duration)
                                         <i style="font-size:17px" class="fa">&#xf017;</i>
                                         {{ $service->duration }}
+                                        @endif
                                     </p>
                                 </div>
 
