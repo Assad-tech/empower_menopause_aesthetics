@@ -30,7 +30,7 @@ class ServicesController extends Controller
             'service_number' => 'required|string',
             'category' => 'required|string',
             'type' => 'required|string',
-            'duration' => 'required|string',
+            // 'duration' => 'required|string',
             'appt_location_type' => 'required|string',
             'amount' => 'required',
             'tax' => 'required',
@@ -69,7 +69,7 @@ class ServicesController extends Controller
         $newService->service_number = $request->service_number??"null";
         $newService->category = $request->category??"null";
         $newService->type = $request->type??"null";
-        $newService->duration = $request->duration??"null";
+        $newService->duration = $request->duration;
         $newService->appt_location_type = $request->appt_location_type??"null";
         $newService->amount = $request->amount??"null";
         $newService->tax = $request->tax??"null";
@@ -94,7 +94,7 @@ class ServicesController extends Controller
             'service_number' => 'required|string',
             'category' => 'required|string',
             'type' => 'required|string',
-            'duration' => 'required|string',
+            // 'duration' => 'required|string',
             'appt_location_type' => 'required|string',
             'amount' => 'required',
             'tax' => 'required',
@@ -139,7 +139,7 @@ class ServicesController extends Controller
         $updateService->service_number = $request->service_number??"null";
         $updateService->category = $request->category??"null";
         $updateService->type = $request->type??"null";
-        $updateService->duration = $request->duration??"null";
+        $updateService->duration = $request->duration;
         $updateService->appt_location_type = $request->appt_location_type??"null";
         $updateService->amount = $request->amount??"null";
         $updateService->tax = $request->tax??"null";
