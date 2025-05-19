@@ -27,7 +27,7 @@ class HomeController extends Controller
         // $content = Home::first();
         $content = Banner::where('page', 'home')->first();
         $testimonials = Testimonial::where('status', 1)->get();
-        $services = Service::where('status', 1)->get()->take(3);
+        $services = Service::where('status', 1)->orderBy('service_number', 'asc')->get()->take(3);
         $faqs = FAQ::where('status', 1)->where('type','General Questions')->get();
         $about = AboutUs::first();
         // dd($content);
@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function services()
     {
         $banner = Banner::where('page', 'service')->first();
-        $services = Service::where('status', 1)->get();
+        $services = Service::where('status', 1)->orderBy('service_number', 'asc')->get();
         $testimonials = Testimonial::where('status', 1)->get();
         return view('frontend.services', compact('banner', 'services', 'testimonials'));
     }
@@ -61,6 +61,17 @@ class HomeController extends Controller
         $testimonials = Testimonial::where('status', 1)->get();
         return view('frontend.viewService', compact('service', 'testimonials'));
     }
+
+    public function serviceLink($slug,$type){
+        try {
+            $service = Service::select($type.' as link','title')->where('slug', $slug)->first();
+            return view('frontend.serviceLink', compact('service'));
+        } catch (\Throwable $th) {
+             return redirect()->back();
+        }
+    }
+
+
 
     // products
     public function products(Request $request)

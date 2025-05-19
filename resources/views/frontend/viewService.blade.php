@@ -3,7 +3,7 @@
 @push('custom_css')
     <style>
         a.dark-btn {
-            padding: 9px 13px;
+            padding: 9px 1$service->booking_locationpx;
             background-color: #959394;
             border: solid 2px #959394;
             color: #fff;
@@ -54,12 +54,14 @@
 
                     <div class="row">
                         <div class="col-5">
-                            <a class="dark-btn w-100 text-center  " href="{{ $service->booking_location }}">Book Clinic</a>
+                            {{-- <a class="dark-btn w-100 text-center  " href="{{ $service->booking_location }}">Book Clinic</a> --}}
+                            <a class="dark-btn w-100 text-center  " href="{{url('services/'.$service->slug.'/'.'booking_location')}}">Book Clinic</a>
 
                         </div>
                         <div class="col-5">
 
-                            <a class="dark-btn w-100 text-center" href="{{ $service->booking_practitioner }}">Book Practitioner</a>
+                            {{-- <a class="dark-btn w-100 text-center" href="{{ $service->booking_practitioner }}">Book Practitioner</a> --}}
+                            <a class="dark-btn w-100 text-center" href="{{url('services/'.$service->slug.'/'.'booking_practitioner')}}">Book Practitioner</a>
                         </div>
 
 
@@ -72,7 +74,7 @@
 
 
                 </div>
-                <div class="col-md-12 text-center mt-5">
+                <div class="col-md-12  mt-5">
                     {!! $service->description ?? ' ' !!}
                 </div>
 

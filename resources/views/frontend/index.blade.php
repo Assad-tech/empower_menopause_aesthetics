@@ -171,7 +171,7 @@
                                 class="accordion-collapse collapse {{ $index == 0 ? 'show' : '' }}"
                                 aria-labelledby="heading-{{ $data->id }}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    {{ $data->answer }}
+                                    {!!$data->answer!!}
                                 </div>
                             </div>
                         </div>
