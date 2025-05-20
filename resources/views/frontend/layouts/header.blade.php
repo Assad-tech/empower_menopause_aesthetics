@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-7">
                 <div class="row">
-                    <div class="col-md-3 h-icon-col">
+                    <div class="col-md-4 h-icon-col">
                         <div class="h-icon">
                             <span><i class="fa-solid fa-phone-volume"></i></span>
                         </div>
@@ -37,7 +37,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-6 h-icon-col">
+                    <div class="col-md-5 h-icon-col">
                         <div class="h-icon">
                             <span><i class="fa-solid fa-envelope"></i></span>
                         </div>
