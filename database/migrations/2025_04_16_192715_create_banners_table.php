@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('greeting')->nullable();
             $table->string('site_name')->nullable();
             $table->string('banner')->nullable();
-            $table->string('banner_description')->nullable();
+            $table->text('banner_description')->nullable();
             $table->string('banner_link')->nullable();
             $table->string('link_text')->nullable();
             $table->timestamps();
