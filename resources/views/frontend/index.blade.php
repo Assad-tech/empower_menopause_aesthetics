@@ -72,7 +72,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-left">
                     <div class="about-content">
                         <h3 class="sub-h">{{ $about->sub_heading ?? 'About Us' }}</h3>
-                        {!! substr($about->description, 0,  1000) ??
+                        {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                         <div class="ser-btn">
                         <a class="dark-btn" href="{{route('about.us')}}">for more details</a>

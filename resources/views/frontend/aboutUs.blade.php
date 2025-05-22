@@ -49,7 +49,7 @@
                         <h3 class="sub-h">{{$about->heading??"About Us"}}</h3>
                         {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
-                        <button>for more details</button>
+                        {{-- <button>for more details</button> --}}
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="3000">
@@ -58,7 +58,7 @@
                             alt="">
                     </div>
                 </div>
-                <div class="col-12">
+                <di v class="col-12">
                     {!! $about->more_description !!}
                 </div>
             </div>
