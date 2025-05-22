@@ -27,6 +27,7 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'about_us_heading' => 'required|string',
             'about_us_description' => 'required|string',
+            'about_us_more_description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
@@ -50,6 +51,7 @@ class AboutUsController extends Controller
 
         $about->heading = $validated['about_us_heading'];
         $about->description = $validated['about_us_description'];
+        $about->more_description = $validated['about_us_more_description'];
         $about->save();
 
         toastr()->success('About Us details updated successfully!');
@@ -62,6 +64,7 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'about_me_heading' => 'required|string',
             'about_me_description' => 'required|string',
+            'about_me_more_description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
@@ -84,6 +87,7 @@ class AboutUsController extends Controller
 
         $about->heading = $validated['about_me_heading'];
         $about->description = $validated['about_me_description'];
+        $about->more_description = $validated['about_me_more_description'];
         $about->save();
 
         toastr()->success('About Me details updated successfully!');

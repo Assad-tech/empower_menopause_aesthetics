@@ -58,6 +58,9 @@
                             alt="">
                     </div>
                 </div>
+                <div class="col-12">
+                    {!! $about->more_description !!}
+                </div>
             </div>
         </div>
     </section>
@@ -78,6 +81,9 @@
                         {!! $aboutMe->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
                     </div>
+                </div>
+                <div class="col-12">
+                    {!! $aboutMe->more_description !!}
                 </div>
             </div>
         </div>

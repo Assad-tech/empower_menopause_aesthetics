@@ -148,6 +148,19 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-12">
+                                                    <!-- About Us Description -->
+                                                    <div class="form-group">
+                                                        <h4>More Description</h4>
+                                                        <textarea name="about_us_more_description" class="form-control summernote-editor" id="summernote-description">
+                                                            {!! old('about_us_more_description', $about->more_description ?? '') !!}
+                                                        </textarea>
+                                                        @error('about_us_more_description')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row pb-3">
@@ -213,6 +226,19 @@
                                                             {!! old('description', $aboutMe->description ?? '') !!}
                                                         </textarea>
                                                         @error('about_me_description')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <!-- About Us Description -->
+                                                    <div class="form-group">
+                                                        <h4>More Description</h4>
+                                                        <textarea name="about_me_more_description" class="form-control summernote-editor" id="summernote-description">
+                                                            {!! old('about_me_more_description', $aboutMe->more_description ?? '') !!}
+                                                        </textarea>
+                                                        @error('about_me_more_description')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
