@@ -141,7 +141,7 @@
         <div class="container">
             <div class="sec-title">
                 <h3 class="sub-h">Testimonials</h3>
-                <h2>What Our Clients Says</h2>
+                <h2>Trusted by Thousands Of Happy Patients</h2>
             </div>
 
             <div class="owl-carousel owl-theme">
