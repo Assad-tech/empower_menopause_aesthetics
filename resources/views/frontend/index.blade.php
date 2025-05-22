@@ -188,11 +188,11 @@
     <section class="cta-sec">
         <div class="container">
             <div class="row">
-                <div class="col-md-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <div class="col-md-7" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <h2>{{ $consultation->consultation ?? ' Appointment Consultation' }}</h2>
 <p>It is not too late to make the changes you desire.The past does not determine your future.</p>
                 </div>
-                <div class="col-md-6 cta-r-col" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <div class="col-md-5 cta-r-col" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <div class="banner-bnt">
                         <div> <a class="dark-btn" href="{{ route('services') }}">See Our Service</a> </div>
                         <div> <a class="light-btn" href="{{ route('book.consultation') }}">Book a Consultation</a> </div>
