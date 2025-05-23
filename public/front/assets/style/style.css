@@ -388,7 +388,7 @@ color: #959394;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 50px 0px;
-  margin: 100px 0px;
+  /* margin: 100px 0px; */
 }
 .services-sec h2, .main-ser-sec h2 {
   margin-bottom: 20px;
@@ -736,4 +736,12 @@ footer .newsletter button{
 }
 .blog-sec {
   margin: 100px 0px;
+}
+
+.service{
+    height: 446px;
+}
+
+.about-btn{
+    float: inline-start;
 }

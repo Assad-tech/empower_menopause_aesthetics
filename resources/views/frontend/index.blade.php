@@ -74,7 +74,7 @@
                         <h3 class="sub-h">{{ $about->sub_heading ?? 'About Us' }}</h3>
                         {!! $about->description ??
                             'Personalized hormone therapy, aesthetic treatments, and wellness solutions for a confident you.' !!}
-                        <div class="ser-btn">
+                        <div class="ser-btn about-btn">
                         <a class="dark-btn" href="{{route('about.us')}}">for more details</a>
                     </div>
                     </div>
@@ -95,7 +95,7 @@
                 @foreach ($services as $service)
 
                 <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 ">
-                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="card shadow-lg p-3 mb-5 bg-white rounded service">
                         <div class="d-flex justify-content-between p-3">
                             <p class="lead mb-0">{{ $service->appt_location_type ?? '' }}</p>
 

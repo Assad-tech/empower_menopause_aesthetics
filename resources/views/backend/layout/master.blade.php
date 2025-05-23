@@ -165,6 +165,31 @@
         });
     </script>
 
+<script>
+    $(document).ready(function() {
+      // Summernote init
+      $('.summernote').summernote({
+        height: 300,
+        callbacks: {
+          onInit: function() {
+            // Summernote inline styles remove karein
+            $('.note-editable').removeAttr('style');
+
+            // Summernote ke stylesheet ko disable karein
+            $('link#sn-css').prop('disabled', true);
+
+            // Agar koi inline <style> tag add hua ho, usay bhi remove karein
+            $('style').each(function() {
+              if ($(this).html().includes('.note')) {
+                $(this).remove();
+              }
+            });
+          }
+        }
+      });
+    });
+    </script>
+
     @stack('custom_js')
 
 </body>

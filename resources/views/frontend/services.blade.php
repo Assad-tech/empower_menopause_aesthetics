@@ -58,7 +58,7 @@
             <div class="row">
                 @foreach ($services as $service)
                     <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 ">
-                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="card shadow-lg p-3 mb-5 bg-white rounded service">
                             <div class="d-flex justify-content-between p-3">
                                 <p class="lead mb-0">{{ $service->appt_location_type ?? '' }}</p>
 

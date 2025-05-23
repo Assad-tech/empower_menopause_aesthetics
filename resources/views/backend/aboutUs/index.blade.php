@@ -140,7 +140,7 @@
                                                     <!-- About Us Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <textarea name="about_us_description" class="form-control summernote-editor" id="summernote-description">
+                                                        <textarea name="about_us_description" class="form-control summernote" id="summernote-description">
                                                             {!! old('description', $about->description ?? '') !!}
                                                         </textarea>
                                                         @error('about_us_description')
@@ -153,7 +153,7 @@
                                                     <!-- About Us Description -->
                                                     <div class="form-group">
                                                         <h4>More Description</h4>
-                                                        <textarea name="about_us_more_description" class="form-control summernote-editor" id="summernote-description">
+                                                        <textarea name="about_us_more_description" class="form-control summernote" id="summernote-description">
                                                             {!! old('about_us_more_description', $about->more_description ?? '') !!}
                                                         </textarea>
                                                         @error('about_us_more_description')
@@ -222,7 +222,7 @@
                                                     <!-- About Me Description -->
                                                     <div class="form-group">
                                                         <h4>Description</h4>
-                                                        <textarea name="about_me_description" class="form-control summernote-editor" id="summernote-aboutme-description">
+                                                        <textarea name="about_me_description" class="form-control summernote" id="summernote-aboutme-description">
                                                             {!! old('description', $aboutMe->description ?? '') !!}
                                                         </textarea>
                                                         @error('about_me_description')
@@ -235,7 +235,7 @@
                                                     <!-- About Us Description -->
                                                     <div class="form-group">
                                                         <h4>More Description</h4>
-                                                        <textarea name="about_me_more_description" class="form-control summernote-editor" id="summernote-description">
+                                                        <textarea name="about_me_more_description" class="form-control summernote" id="summernote-description">
                                                             {!! old('about_me_more_description', $aboutMe->more_description ?? '') !!}
                                                         </textarea>
                                                         @error('about_me_more_description')
